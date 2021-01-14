@@ -1,10 +1,25 @@
-const { init } = require('./index.js');
+const db = require('./index.js');
+const {Test: Tests} = require('./models/index.js');
 
-init((sequelize) => {
-  sequelize.authenticate()
-    .then(() => {
-      console.log('Connection has been established successfully.');
-      return sequelize.close();
-    })
-    .catch((error) => console.error('Unable to connect to the database:', error));
-});
+
+const testSeeds = [
+  {
+    name: 'A'
+  },
+  {
+    name: 'B'
+  },
+  {
+    name: 'C'
+  }
+];
+
+const seed = () => {
+  return Tests.bulkCreate(testSeeds);
+};
+
+db.sync()
+  .then(() => seed())
+  .then(() => {
+    process.exit();
+  });
