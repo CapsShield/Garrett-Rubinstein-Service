@@ -18,7 +18,7 @@ const seeds = {
   ],
   game: [
     {
-      title: 'Antichamber'
+      title: 'Antichamber',
     }
   ],
   lang: [
@@ -36,7 +36,8 @@ const seeds = {
       createdAt: new Date(2013, 3, 15, 9, 38, 16),
       languageId: 1,
       gameId: 1,
-      userId: 1
+      userId: 1,
+      positive: true
     }
   ],
   usersGames: [
