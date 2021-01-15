@@ -47,6 +47,7 @@ seedAll(seeds, (err) => {
   if (err) {
     console.error(err);
   } else {
+    //tests go here!
     console.log('SUCCESS!');
   }
 });
