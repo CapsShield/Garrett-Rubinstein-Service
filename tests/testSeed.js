@@ -1,5 +1,11 @@
 const seedAll = require('../database/seed.js');
-const db = require('../database/index.js');
+const { expect } = require('chai');
+
+const Game = require('../database/models/games.model.js');
+const User = require('../database/models/users.model.js');
+const Language = require('../database/models/languages.model.js');
+const UsersGames = require('../database/models/usersgames.model.js');
+const Review = require('../database/models/reviews.model.js');
 
 const seeds = {
   user: [
@@ -43,11 +49,28 @@ const seeds = {
   ]
 };
 
-seedAll(seeds, (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    //tests go here!
-    console.log('SUCCESS!');
-  }
-});
+module.exports = (testCB) =>
+  seedAll(seeds, (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      // TESTS GO HERE
+      if (testCB) {
+        testCB();
+      }
+      return Game.findAll()
+        .then((games) => {
+          expect(games.length).to.equal(1);
+        })
+        .then(() => Language.findAll())
+        .then((langs) => expect(langs.length).to.equal(1))
+        .then(() => Review.findAll())
+        .then((reviews) => expect(reviews.length).to.equal(1))
+        .then(() => User.findAll())
+        .then((users) => expect(users.length).to.equal(1))
+        .then(() => UsersGames.findAll())
+        .then((usersGames) => expect(usersGames.length).to.equal(1))
+        .then(() => console.log('SUCCESS!'))
+        .catch((err) => console.log(err));
+    }
+  });
