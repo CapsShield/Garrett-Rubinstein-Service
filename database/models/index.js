@@ -20,7 +20,6 @@ Game.belongsToMany(User, { through: UsersGames });
 User.belongsToMany(Game, { through: UsersGames });
 
 module.exports = {
-  db,
   Game,
   User,
   Language,
