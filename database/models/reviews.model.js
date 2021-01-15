@@ -7,7 +7,8 @@ const Review = db.define('review', {
   unhelpfulVotes: Sequelize.INTEGER,
   funnyVotes: Sequelize.INTEGER,
   hoursWhenReviewed: Sequelize.DECIMAL(10, 1),
-  createdAt: Sequelize.DATE
+  createdAt: Sequelize.DATE,
+  positive: Sequelize.BOOLEAN
 }, {
   timestamps: false
 });
