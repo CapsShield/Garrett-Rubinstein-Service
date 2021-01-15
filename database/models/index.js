@@ -19,9 +19,6 @@ Review.belongsTo(Language);
 Game.belongsToMany(User, { through: UsersGames });
 User.belongsToMany(Game, { through: UsersGames });
 
-
-
-
 module.exports = {
   db,
   Test
