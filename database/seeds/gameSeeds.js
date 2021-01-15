@@ -1,5 +1,4 @@
 const faker = require('faker');
-console.log('hi');
 const seeds = [
   {
     id: 1,
