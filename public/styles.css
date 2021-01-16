@@ -16,6 +16,7 @@ body {
   width: 616px;
   grid-template-columns: 184px, 1fr;
   grid-template-rows: 1px, 1fr;
+  margin-bottom: 24px;
 }
 .gradient-top-border {
   height: 1px;

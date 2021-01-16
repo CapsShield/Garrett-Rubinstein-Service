@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReviewEntry = (props) => {
+const ReviewEntry = ({review}) => {
   return (
     <div className="review-entry">
       <div className="gradient-top-border">
@@ -10,19 +10,22 @@ const ReviewEntry = (props) => {
           <div className="avatar">
             <img src="http://placecorgi.com/32/32" />
           </div>
-          <div className="username">Dr Latency</div>
-          <div className="num-owned-games">147 products in account</div>
-          <div className="num-reviews">6 reviews</div>
+          <div className="username">{review.user.username}</div>
+          <div className="num-owned-games">{`${review.user.productsOwned} product${review.user.productsOwned !== 1 ? 's' : null} in account`}</div>
+          <div className="num-reviews">{`${review.user.reviewsWritten} review${review.user.reviewsWritten !== 1 ? 's' : null}`}</div>
         </div>
       </div>
       <div className="review-info">
         <div className="review-header">
           <div className="rec-thumb">
-            <img src="assets/thumbUp.png" />
+            <img src={`assets/${review.positive ? 'thumbUp' : 'thumbDown'}.png`} />
           </div>
           <div className="review-header-text">
-            <div className="rec-text">Recommended</div>
-            <div className="rec-hours">19.8 hrs on record</div>
+            <div className="rec-text">{review.positive ? 'Recommended' : 'Not Recommended'}</div>
+            <div className="rec-hours">
+              {`${review.user.games[0].usersgame.hoursPlayed} hrs on record
+              ${review.user.games[0].usersgame.hoursPlayed === review.hoursWhenReviewed ? '' : ` (${review.hoursWhenReviewed} hrs at review time)`}`}
+            </div>
           </div>
           <div className="review-source">
             <img src="assets/icon_review_steam.png" />
