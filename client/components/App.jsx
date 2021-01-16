@@ -1,8 +1,9 @@
 import React from 'react';
+import ReviewEntry from './ReviewEntry.jsx';
 
 const App = () => {
   return (
-    <h1>hello world!</h1>
+    <ReviewEntry/>
   );
 };
 
