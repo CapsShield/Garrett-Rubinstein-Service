@@ -1,3 +1,6 @@
+*, *:before, *after {
+  box-sizing: border-box;
+}
 :root {
   --bg-main: #1b2938;
   --text-main: #c6d4df;
@@ -5,5 +8,66 @@
 body {
   background-color: var(--bg-main);
   color: var(--text-main);
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
+}
+.review-entry {
+  background-color: rgba(0, 0, 0, 0.2);
+  display: grid;
+  width: 616px;
+  grid-template-columns: 184px, 1fr;
+  grid-template-rows: 1px, 1fr;
+}
+.gradient-top-border {
+  height: 1px;
+  grid-row: 1;
+  grid-column: 1 / span 2;
+  background-image: url("assets/maincol_gradient_rule.png");
+}
+.review-user-info {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+}
+.user-info-ctn {
+  display: grid;
+  grid-template-columns: 44px, 1fr;
+  grid-template-rows: 19px, 17px, 12px;
+  padding: 8px;
+  color: #C1DBF4;
+}
+.avatar {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+  margin-right: 8px;
+  padding: 1px;
+  height: 32px;
+  background-image: linear-gradient(rgb(83, 164, 196) 5%, rgb(69, 128, 151) 95%);
+  background-clip: border-box;
+}
+.username {
+  grid-row: 1;
+  grid-column: 2;
+  font-size: 13px;
+  font-weight: bold;
+}
+.num-owned-games {
+  grid-row: 2;
+  grid-column: 2;
+  font-size: 11px;
+}
+.num-reviews {
+  grid-row: 3;
+  grid-column: 1 / span 2;
+  font-size: 11px;
+}
+.review-info {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  margin-left: 14px;
+}
+.review-header {
+  display: flex;
 }

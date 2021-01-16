@@ -4,27 +4,28 @@ const ReviewEntry = (props) => {
   return (
     <div className="review-entry">
       <div className="gradient-top-border">
-        <img src="assets/maincol_gradient_rule.png"/>
       </div>
       <div className="review-user-info">
-        <div className="avatar">
-          <img src="http://placecorgi.com/32/32"/>
+        <div className="user-info-ctn">
+          <div className="avatar">
+            <img src="http://placecorgi.com/32/32" />
+          </div>
+          <div className="username">Dr Latency</div>
+          <div className="num-owned-games">147 products in account</div>
+          <div className="num-reviews">6 reviews</div>
         </div>
-        <div className="username">Dr Latency</div>
-        <div className="num-owned-games">147 products in account</div>
-        <div className="num-reviews">6 reviews</div>
       </div>
       <div className="review-info">
         <div className="review-header">
           <div className="rec-thumb">
-            <img src="assets/thumbUp.png"/>
+            <img src="assets/thumbUp.png" />
           </div>
           <div className="review-header-text">
             <div className="rec-text">Recommended</div>
             <div className="hours">19.8 hrs on record</div>
           </div>
           <div className="review-source">
-            <img src="assets/icon_review_steam.png"/>
+            <img src="assets/icon_review_steam.png" />
           </div>
         </div>
         <div className="posted-date">posted: december 26, 2020</div>
