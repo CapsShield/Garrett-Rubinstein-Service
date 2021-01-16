@@ -22,7 +22,7 @@ const ReviewEntry = (props) => {
           </div>
           <div className="review-header-text">
             <div className="rec-text">Recommended</div>
-            <div className="hours">19.8 hrs on record</div>
+            <div className="rec-hours">19.8 hrs on record</div>
           </div>
           <div className="review-source">
             <img src="assets/icon_review_steam.png" />
@@ -37,15 +37,15 @@ const ReviewEntry = (props) => {
           <div className="vote-prompt">Was this review helpful?</div>
           <div className="vote-btn-ctn">
             <div className="vote-btn vote-btn-helpful">
-              <i className="icon-helpful"></i>
+              <i className="icon-16 icon-helpful"></i>
               <span className="vote-btn-text">Yes</span>
             </div>
             <div className="vote-btn vote-btn-unhelpful">
-              <i className="icon-unhelpful"></i>
+              <i className="icon-16 icon-unhelpful"></i>
               <span className="vote-btn-text">No</span>
             </div>
             <div className="vote-btn vote-btn-funny">
-              <i className="icon-funny"></i>
+              <i className="icon-16 icon-funny"></i>
               <span className="vote-btn-text">Funny</span>
             </div>
             <div className="vote-btn vote-btn-award">
