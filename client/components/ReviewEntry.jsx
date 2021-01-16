@@ -8,7 +8,7 @@ const ReviewEntry = ({review}) => {
       <div className="review-user-info">
         <div className="user-info-ctn">
           <div className="avatar">
-            <img src="http://placecorgi.com/32/32" />
+            <img className="avatar-img" src={review.user.avatarUrl} />
           </div>
           <div className="username">{review.user.username}</div>
           <div className="num-owned-games">{`${review.user.productsOwned} product${review.user.productsOwned !== 1 ? 's' : null} in account`}</div>

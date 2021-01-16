@@ -49,6 +49,10 @@ body {
   background-image: linear-gradient(rgb(83, 164, 196) 5%, rgb(69, 128, 151) 95%);
   background-clip: border-box;
 }
+.avatar-img {
+  height: 32px;
+  width: 32px;
+}
 .username {
   grid-row: 1;
   grid-column: 2;
