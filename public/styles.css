@@ -53,16 +53,25 @@ body {
   grid-column: 2;
   font-size: 13px;
   font-weight: bold;
+  width: fit-content;
 }
 .num-owned-games {
   grid-row: 2;
   grid-column: 2;
   font-size: 11px;
+  width: fit-content
 }
 .num-reviews {
   grid-row: 3;
   grid-column: 1 / span 2;
   font-size: 11px;
+  width: fit-content;
+}
+.username:hover, .num-owned-games:hover, .num-reviews:hover {
+  cursor: pointer;
+}
+.num-owned-games:hover, .num-reviews:hover {
+  color: #67c1f5;
 }
 .review-info {
   grid-column: 2;
