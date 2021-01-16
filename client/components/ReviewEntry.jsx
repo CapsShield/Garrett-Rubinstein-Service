@@ -33,7 +33,7 @@ const ReviewEntry = ({review}) => {
         </div>
         <div className="posted-date">posted: december 26, 2020</div>
         <div className="review-content">
-          This game is extremely clever, I can't imagine how they came up with some of these puzzles, and you'll have to be clever to work it all out, which certainly took me a while. However, the time spent puzzling in this psychedelic world is very pleasant and relaxing, as the humming ambience makes you feel like you've been transported to another dimension.
+          {review.reviewText}
         </div>
         <div className="review-content-end"></div>
         <div className="vote-controls">

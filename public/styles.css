@@ -46,6 +46,7 @@ body {
   margin-right: 8px;
   padding: 2px;
   height: 32px;
+  width: 32px;
   background-image: linear-gradient(rgb(83, 164, 196) 5%, rgb(69, 128, 151) 95%);
   background-clip: border-box;
 }
