@@ -1,4 +1,5 @@
 import React from 'react';
+const moment = require('moment');
 
 const ReviewEntry = ({ review }) => {
   return (
@@ -31,7 +32,7 @@ const ReviewEntry = ({ review }) => {
             <img src={`assets/${review.user.games[0].usersgame.purchasedOnSteam ? 'icon_review_steam' : 'icon_review_key'}.png`} />
           </div>
         </div>
-        <div className="posted-date">{`posted: ${review.createdAt}`}</div>
+        <div className="posted-date">{`posted: ${moment(new Date(review.createdAt)).format('MMMM D, YYYY')}`}</div>
         <div className="review-content">
           {review.reviewText}
         </div>
