@@ -9,7 +9,7 @@ for (var i = 0; i < 100; i++) {
   seeds.push({
     id: i + 1,
     username: faker.internet.userName(),
-    avatarUrl: 'http://placeimg.com/64/64',
+    avatarUrl: faker.image.image(32, 32, true),
     productsOwned: owned,
     reviewsWritten: faker.random.number({
       min: 1,
