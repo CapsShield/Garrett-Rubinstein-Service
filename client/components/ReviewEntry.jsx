@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReviewEntry = ({review}) => {
+const ReviewEntry = ({ review }) => {
   return (
     <div className="review-entry">
       <div className="gradient-top-border">
@@ -28,10 +28,10 @@ const ReviewEntry = ({review}) => {
             </div>
           </div>
           <div className="review-source">
-            <img src="assets/icon_review_steam.png" />
+            <img src={`assets/${review.user.games[0].usersgame.purchasedOnSteam ? 'icon_review_steam' : 'icon_review_key'}.png`} />
           </div>
         </div>
-        <div className="posted-date">posted: december 26, 2020</div>
+        <div className="posted-date">{`posted: ${review.createdAt}`}</div>
         <div className="review-content">
           {review.reviewText}
         </div>
@@ -58,8 +58,8 @@ const ReviewEntry = ({review}) => {
           </div>
         </div>
         <div className="vote-info">
-          <div className="helpful-count">6 people found this review helpful</div>
-          <div className="funny-count">1 person found this review funny</div>
+          <div className="helpful-count">{`${review.helpfulVotes} ${review.helpfulVotes === 1 ? 'person' : 'people'} found this review helpful`}</div>
+          <div className="funny-count">{`${review.funnyVotes} ${review.funnyVotes === 1 ? 'person' : 'people'} found this review funny`}</div>
         </div>
       </div>
     </div>
