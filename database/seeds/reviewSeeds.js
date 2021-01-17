@@ -23,7 +23,7 @@ for (var i = 0; i < usersGames.length; i++) {
     reviewText: faker.lorem.paragraphs(faker.random.number({
       min: 1,
       max: 10
-    }),'\n\r\n'),
+    }), '\n\r\n'),
     positive: faker.random.number(100) < positiveChance ? true : false
   });
 }
