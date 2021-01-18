@@ -53,6 +53,13 @@ body {
   font-size: 12px;
   margin-left: 2px;
 }
+.summary-tooltip {
+  height: 14px;
+  width: 12px;
+  margin-left: 2px;
+  background-image: url('assets/icon_questionmark.png');
+  background-repeat: no-repeat;
+}
 /*** REVIEW ENTRIES ***/
 
 .review-entry {
