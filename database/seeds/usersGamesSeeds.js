@@ -10,7 +10,7 @@ for (var i = 0; i < users.length; i++) {
       userId: users[i].id,
       gameId: reviewedGames[j].id,
       hoursPlayed: faker.random.number({
-        min: 0,
+        min: 0.1,
         max: 500,
         precision: 0.1
       }),
