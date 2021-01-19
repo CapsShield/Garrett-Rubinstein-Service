@@ -25,7 +25,7 @@ const App = (props) => {
 
   return (
     <div>
-      <SummaryBar />
+      <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary}/>
       <ReviewList reviews={reviews}/>
     </div>
   );
