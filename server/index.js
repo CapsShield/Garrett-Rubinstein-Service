@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const {getGameRecentReviews} = require('../database/queries.js');
+const {getGameRecentReviews, getCounts} = require('../database/queries.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +13,25 @@ app.get('/api/games/:id/reviews/:page', (req, res) => {
       res.status(500).send(err);
     } else {
       res.send(reviews);
+    }
+  });
+});
+
+app.get('/api/games/:id/summary', (req, res) => {
+  var summaries = {};
+  getCounts(req.params.id, false, (err, counts) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      summaries.overall = counts;
+      getCounts(req.params.id, true, (err, recentCounts) => {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          summaries.recent = recentCounts;
+          res.send(summaries);
+        }
+      });
     }
   });
 });
