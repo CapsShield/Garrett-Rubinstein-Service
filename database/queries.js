@@ -33,7 +33,6 @@ const getCounts = (gameId, recentOnly, cb) => {
     };
   }
   const wherePos = Object.assign({ positive: true }, where);
-  console.log(where);
   Review.count({where: where})
     .then(count => {
       total = count;
