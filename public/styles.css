@@ -12,54 +12,6 @@ body {
 }
 
 /*** SUMMARY AREA ***/
-.summary-bar {
-  background-color: #2a475e;
-  width: 940px;
-  height: 63px;
-  box-shadow: 0 0 5px #000;
-  display: grid;
-  grid-template-columns: 605px 1fr;
-  border-bottom: 1px #000 solid;
-}
-
-.overall-summary {
-  grid-column: 1;
-  padding: 10px;
-}
-.recent-summary {
-  grid-column: 2;
-  padding: 10px;
-  box-shadow: 0 0 5px #000;
-  background-color: rgba(148, 217, 255, 0.2) ;
-}
-.summary-details {
-  display: flex;
-}
-.summary-title {
-  font-size: 15px;
-  margin-bottom: 5px;
-  color: #e5e5e5;
-  height: 22px;
-}
-.summary-score {
-  color: #66C0F4;
-  font-size: 17px;
-  font-weight: bold;
-  text-shadow: 1px 1px rgba( 0, 0, 0, 0.2 );;
-  line-height: 11px;
-}
-.summary-review-count {
-  color: #8ba6b6;
-  font-size: 12px;
-  margin-left: 2px;
-}
-.summary-tooltip {
-  height: 14px;
-  width: 12px;
-  margin-left: 2px;
-  background-image: url('assets/icon_questionmark.png');
-  background-repeat: no-repeat;
-}
 /*** REVIEW ENTRIES ***/
 
 .review-entry {
