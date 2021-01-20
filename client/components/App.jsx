@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import ReviewList from './Reviewlist.jsx';
 import SummaryBar from './SummaryBar.jsx';
+import FilterBar from './FilterBar.jsx';
 
 
 const App = (props) => {
@@ -26,6 +27,7 @@ const App = (props) => {
   return (
     <div>
       <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary}/>
+      <FilterBar />
       <ReviewList reviews={reviews}/>
     </div>
   );
