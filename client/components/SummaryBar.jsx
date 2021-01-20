@@ -44,6 +44,7 @@ const SummaryScore = styled.div`
   text-shadow: 1px 1px rgba( 0, 0, 0, 0.2 );;
   line-height: 11px;
   position: relative;
+  cursor: help;
 `;
 const SummaryReviewCount = styled.div`
   color: #8ba6b6;
