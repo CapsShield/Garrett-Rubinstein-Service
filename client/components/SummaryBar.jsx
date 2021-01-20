@@ -55,6 +55,23 @@ const SummaryTooltip = styled.div`
   margin-left: 2px;
   background-image: url('assets/icon_questionmark.png');
   background-repeat: no-repeat;
+  position: relative;
+`;
+const TooltipText = styled.div`
+  position: absolute;
+  bottom: 160%;
+  width: 285px;
+  height: 35px;
+  color: #000;
+  font-size: 8px;
+  padding: 3px;
+  border: 1px #fff none;
+  border-radius: 2px;
+  background-color: #fff;
+  visibility: hidden;
+  ${SummaryTooltip}:hover & {
+    visibility: visible;
+  }
 `;
 const SummaryBar = (props) => {
   const summary2score = (summary) => {
@@ -101,7 +118,9 @@ const SummaryBar = (props) => {
         <SummaryDetails>
           <SummaryScore score={overallScore.category}>{overallScore.text}</SummaryScore>
           <SummaryReviewCount>{`(${props.overallSummary[1]} review${props.overallSummary !== 1 ? 's' : null})`}</SummaryReviewCount>
-          <SummaryTooltip></SummaryTooltip>
+          <SummaryTooltip>
+            <TooltipText>hello world</TooltipText>
+          </SummaryTooltip>
         </SummaryDetails>
       </OverallSummary>
       <RecentSummary>
