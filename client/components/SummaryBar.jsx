@@ -43,6 +43,7 @@ const SummaryScore = styled.div`
   font-weight: bold;
   text-shadow: 1px 1px rgba( 0, 0, 0, 0.2 );;
   line-height: 11px;
+  position: relative;
 `;
 const SummaryReviewCount = styled.div`
   color: #8ba6b6;
@@ -62,7 +63,7 @@ const TooltipText = styled.div`
   bottom: 160%;
   width: 285px;
   height: 35px;
-  color: rgb(14, 14, 17);
+  color: rgb(52, 52, 54);
   font-size: 12px;
   padding: 3px 5px;
   border: 1px #fff none;
@@ -70,7 +71,13 @@ const TooltipText = styled.div`
   background-color: rgb(194, 194, 194);
   visibility: hidden;
   box-shadow: 0 0 5px #000;
+  text-shadow: none;
+  font-weight: 300;
+  line-height: initial;
   ${SummaryTooltip}:hover & {
+    visibility: visible;
+  }
+  ${SummaryScore}:hover & {
     visibility: visible;
   }
 `;
@@ -108,16 +115,22 @@ const SummaryBar = (props) => {
 
     return score;
   };
-
+  const getPercent = (summary) => {
+    return Math.floor((summary[0] / summary[1]) * 100);
+  };
   var overallScore = summary2score(props.overallSummary);
   var recentScore = summary2score(props.recentSummary);
-
+  var overallPercent = getPercent(props.overallSummary);
+  var recentPercent = getPercent(props.recentSummary);
   return (
     <SummaryContainer>
       <OverallSummary>
         <SummaryTitle>Overall Reviews:</SummaryTitle>
         <SummaryDetails>
-          <SummaryScore score={overallScore.category}>{overallScore.text}</SummaryScore>
+          <SummaryScore score={overallScore.category}>
+            {overallScore.text}
+            <TooltipText>{`${overallPercent}% of the ${props.overallSummary[1]} user reviews for this game are positive`}</TooltipText>
+          </SummaryScore>
           <SummaryReviewCount>{`(${props.overallSummary[1]} review${props.overallSummary !== 1 ? 's' : null})`}</SummaryReviewCount>
           <SummaryTooltip>
             <TooltipText>This summary uses reviews written by customers regardless of purchase source.</TooltipText>
@@ -127,7 +140,10 @@ const SummaryBar = (props) => {
       <RecentSummary>
         <SummaryTitle>Recent Reviews:</SummaryTitle>
         <SummaryDetails>
-          <SummaryScore score={recentScore.category}>{recentScore.text}</SummaryScore>
+          <SummaryScore score={recentScore.category}>
+            {recentScore.text}
+            <TooltipText>{`${recentPercent}% of the ${props.recentSummary[1]} user reviews in the last 30 days are positive`}</TooltipText>
+          </SummaryScore>
           <SummaryReviewCount>{`(${props.recentSummary[1]} review${props.recentSummary !== 1 ? 's' : null})`}</SummaryReviewCount>
           <SummaryTooltip>
             <TooltipText>This summary uses reviews written by customers regardless of purchase source.</TooltipText>
