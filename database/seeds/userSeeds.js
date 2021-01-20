@@ -1,7 +1,7 @@
 const faker = require('faker');
 const seeds = [];
 
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 125; i++) {
   var owned = faker.random.number({
     min: 1,
     max: 101 //total number of seeded games

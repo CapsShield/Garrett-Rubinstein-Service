@@ -10,6 +10,10 @@ body {
   color: var(--text-main);
   font-family: Arial, sans-serif;
 }
+
+/*** SUMMARY AREA ***/
+/*** REVIEW ENTRIES ***/
+
 .review-entry {
   background-color: rgba(0, 0, 0, 0.2);
   display: grid;
