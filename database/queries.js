@@ -26,18 +26,22 @@ const getGameRecentReviews = (gameId, pageNum = 0, cb) => {
 
 const getCounts = (gameId, recentOnly, cb) => {
   var total = 0;
-  var where = { gameId: gameId };
+  var where = {gameId: gameId};
   if (recentOnly) {
     where.createdAt = {
       [Op.gte]: moment().subtract(30, 'days').toDate()
     };
   }
   const wherePos = Object.assign({ positive: true }, where);
-  Review.count({where: where})
+  Review.count({
+    where: where
+  })
     .then(count => {
       total = count;
     })
-    .then(() => Review.count({where: wherePos}))
+    .then(() => Review.count({
+      where: wherePos
+    }))
     .then((posCount) => cb(null, [posCount, total]))
     .catch((err) => cb(err));
 };
