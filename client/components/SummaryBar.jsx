@@ -62,13 +62,14 @@ const TooltipText = styled.div`
   bottom: 160%;
   width: 285px;
   height: 35px;
-  color: #000;
-  font-size: 8px;
-  padding: 3px;
+  color: rgb(14, 14, 17);
+  font-size: 12px;
+  padding: 3px 5px;
   border: 1px #fff none;
-  border-radius: 2px;
-  background-color: #fff;
+  border-radius: 3px;
+  background-color: rgb(194, 194, 194);
   visibility: hidden;
+  box-shadow: 0 0 5px #000;
   ${SummaryTooltip}:hover & {
     visibility: visible;
   }
@@ -119,7 +120,7 @@ const SummaryBar = (props) => {
           <SummaryScore score={overallScore.category}>{overallScore.text}</SummaryScore>
           <SummaryReviewCount>{`(${props.overallSummary[1]} review${props.overallSummary !== 1 ? 's' : null})`}</SummaryReviewCount>
           <SummaryTooltip>
-            <TooltipText>hello world</TooltipText>
+            <TooltipText>This summary uses reviews written by customers regardless of purchase source.</TooltipText>
           </SummaryTooltip>
         </SummaryDetails>
       </OverallSummary>
@@ -128,7 +129,9 @@ const SummaryBar = (props) => {
         <SummaryDetails>
           <SummaryScore score={recentScore.category}>{recentScore.text}</SummaryScore>
           <SummaryReviewCount>{`(${props.recentSummary[1]} review${props.recentSummary !== 1 ? 's' : null})`}</SummaryReviewCount>
-          <SummaryTooltip></SummaryTooltip>
+          <SummaryTooltip>
+            <TooltipText>This summary uses reviews written by customers regardless of purchase source.</TooltipText>
+          </SummaryTooltip>
         </SummaryDetails>
       </RecentSummary>
     </SummaryContainer>
