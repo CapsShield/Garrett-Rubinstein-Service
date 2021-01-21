@@ -1,15 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import FilterDropdown from './FilterDropdown.jsx';
+import DisplaySelector from './DisplaySelector.jsx';
 
 const FilterBar = (props) => {
   return (
     <FilterContainer>
-      <FilterDropdown title="review type"></FilterDropdown>
-      <FilterDropdown title="purchase type"></FilterDropdown>
-      <FilterDropdown title="language"></FilterDropdown>
-      <FilterDropdown title="date range"></FilterDropdown>
-      <FilterDropdown title="playtime"></FilterDropdown>
+      <FilterDropdown title="review type"/>
+      <FilterDropdown title="purchase type"/>
+      <FilterDropdown title="language"/>
+      <FilterDropdown title="date range"/>
+      <FilterDropdown title="playtime"/>
+      <DisplaySelector />
     </FilterContainer>
   );
 };

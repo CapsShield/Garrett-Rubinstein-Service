@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const FilterDropdown = (props) => {
   return (
-    <DropdownMenu>{props.title}</DropdownMenu>
+    <DropdownMenu>
+      <DropdownTitle>{props.title}</DropdownTitle>
+    </DropdownMenu>
   );
 };
 
@@ -11,14 +13,22 @@ const DropdownMenu = styled.div`
   text-transform: uppercase;
   font-size: 10px;
   color: #4582a5;
-  padding: 10px 20px 10px 10px;
-  cursor: pointer;
+  padding-right: 10px;
+  border-left: 1px solid #2a475e;
+  &:hover {
+    background-color: #c6d4df;
+  }
+`;
+const DropdownTitle = styled.div`
   background-image: url(assets/btn_arrow_down_padded.png);
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: right;
-  border-left: 1px solid #2a475e;
-  margin-right: 10px;
+  cursor: pointer;
+  padding: 10px 20px 10px 10px;
+  ${DropdownMenu}:hover & {
+    background-image: url(assets/btn_arrow_down_padded_black.png);
+  }
 `;
 
 export default FilterDropdown;
