@@ -93,9 +93,8 @@ const TooltipText = styled.div`
   position: absolute;
   bottom: 160%;
   width: 285px;
-  height: 35px;
   color: rgb(52, 52, 54);
-  font-size: 12px;
+  font-size: 11px;
   padding: 3px 5px;
   border: 1px #fff none;
   border-radius: 3px;
@@ -105,6 +104,7 @@ const TooltipText = styled.div`
   text-shadow: none;
   font-weight: 300;
   line-height: initial;
+  white-space: pre-line;
   ${TooltipContainer}:hover & {
     visibility: visible;
   }

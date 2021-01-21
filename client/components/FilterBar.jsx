@@ -35,12 +35,13 @@ const FilterBar = (props) => {
         id: 'purchase-type-vapor',
         value: 'vapor',
         label: 'Vapor Purchasers',
-        tooltip: 'This is some tooltip text. it is tooltippy'
+        tooltip: 'These are reviews written by customers that purchased the game directly from Vapor.'
       },
       {
         id: 'purchase-type-other',
         value: 'other',
-        label: 'Other'
+        label: 'Other',
+        tooltip: 'These are reviews written by customers that did not purchase the game on Vapor. (This may include legitimate sources such as other digital stores, retail stores, testing purposes, or press review purposes. Or, from inappropriate sources such as copies given in exchange for reviews.)'
       }
     ],
     language: [
@@ -52,7 +53,8 @@ const FilterBar = (props) => {
       {
         id: 'language-user',
         value: 'user',
-        label: 'Your Languages'
+        label: 'Your Languages',
+        tooltip: 'Your preferences are currently set to show content authored in these languages: English.\n\n Click \'customize\' below to modify your preferences.'
       }
     ],
     dateRange: [
