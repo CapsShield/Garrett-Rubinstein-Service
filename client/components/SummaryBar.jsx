@@ -9,6 +9,7 @@ const SummaryContainer = styled.div`
   display: grid;
   grid-template-columns: 605px 1fr;
   border-bottom: 1px #000 solid;
+  position: relative;
 `;
 const OverallSummary = styled.div`
   grid-column: 1;
@@ -65,7 +66,7 @@ const TooltipText = styled.div`
   width: 285px;
   height: 35px;
   color: rgb(52, 52, 54);
-  font-size: 12px;
+  font-size: 11px;
   padding: 3px 5px;
   border: 1px #fff none;
   border-radius: 3px;
