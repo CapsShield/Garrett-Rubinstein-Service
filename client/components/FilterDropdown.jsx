@@ -17,6 +17,11 @@ const FilterDropdown = (props) => {
                   {content.label}
                   {content.data ? <ContentData>({content.data})</ContentData> : null}
                 </ContentLabel>
+                {!content.tooltip ? null : (
+                  <TooltipContainer>
+                    <TooltipText>{content.tooltip}</TooltipText>
+                  </TooltipContainer>
+                )}
               </ContentLine>
             );
           })}
@@ -75,5 +80,33 @@ const ContentData = styled.span`
   margin-left: 2px;
   color: #7193a6;
 `;
-
+const TooltipContainer = styled.div`
+  height: 14px;
+  width: 12px;
+  margin-left: 2px;
+  margin-top: 1px;
+  background-image: url('assets/icon_questionmark_dark.png');
+  background-repeat: no-repeat;
+  position: relative;
+`;
+const TooltipText = styled.div`
+  position: absolute;
+  bottom: 160%;
+  width: 285px;
+  height: 35px;
+  color: rgb(52, 52, 54);
+  font-size: 12px;
+  padding: 3px 5px;
+  border: 1px #fff none;
+  border-radius: 3px;
+  background-color: rgb(194, 194, 194);
+  visibility: hidden;
+  box-shadow: 0 0 5px #000;
+  text-shadow: none;
+  font-weight: 300;
+  line-height: initial;
+  ${TooltipContainer}:hover & {
+    visibility: visible;
+  }
+`;
 export default FilterDropdown;

@@ -34,7 +34,8 @@ const FilterBar = (props) => {
       {
         id: 'purchase-type-vapor',
         value: 'vapor',
-        label: 'Vapor Purchasers'
+        label: 'Vapor Purchasers',
+        tooltip: 'This is some tooltip text. it is tooltippy'
       },
       {
         id: 'purchase-type-other',
