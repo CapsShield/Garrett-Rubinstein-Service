@@ -5,11 +5,13 @@ const FilterDropdown = (props) => {
   return (
     <DropdownMenu>
       <DropdownTitle>{props.title}</DropdownTitle>
+      <DropdownContent>hi</DropdownContent>
     </DropdownMenu>
   );
 };
 
 const DropdownMenu = styled.div`
+  position: relative;
   text-transform: uppercase;
   font-size: 10px;
   color: #4582a5;
@@ -28,6 +30,18 @@ const DropdownTitle = styled.div`
   padding: 10px 20px 10px 10px;
   ${DropdownMenu}:hover & {
     background-image: url(assets/btn_arrow_down_padded_black.png);
+  }
+`;
+const DropdownContent = styled.div`
+  position: absolute;
+  visibility: hidden;
+  background-color: #c6d4df;
+  padding: 10px;
+  color: #556772;
+  line-height: 20px;
+  z-index: 10;
+  ${DropdownMenu}:hover & {
+    visibility: visible;
   }
 `;
 
