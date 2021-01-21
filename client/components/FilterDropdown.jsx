@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const FilterDropdown = (props) => {
-  const [selected, setSelected] = useState(props.content ? props.content[props.default].value : null);
+  const [selected, setSelected] = useState(props.content ? props.content[props.default || 0].value : null);
   const changeHandler = (e) => setSelected(e.target.value);
   return (
     <DropdownMenu>

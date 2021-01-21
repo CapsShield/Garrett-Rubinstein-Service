@@ -41,15 +41,66 @@ const FilterBar = (props) => {
         value: 'other',
         label: 'Other'
       }
+    ],
+    language: [
+      {
+        id: 'language-all',
+        value: 'all',
+        label: 'All Languages'
+      },
+      {
+        id: 'language-user',
+        value: 'user',
+        label: 'Your Languages'
+      }
+    ],
+    dateRange: [
+      {
+        id: 'date-range-lifetime',
+        value: 'lifetime',
+        label: 'Lifetime'
+      },
+      {
+        id: 'date-range-include',
+        value: 'include',
+        label: 'Only Specific Range (Select on graph above)'
+      },
+      {
+        id: 'date-range-exclude',
+        value: 'exclude',
+        label: 'Exclude Specific Range (Select on graph above)'
+      }
+    ],
+    playtime: [
+      {
+        id: 'playtime-no-min',
+        value: 'no-min',
+        label: 'No Minimum',
+      },
+      {
+        id: 'playtime-over-1-hr',
+        value: 'over-1-hr',
+        label: 'Over 1 hour'
+      },
+      {
+        id: 'playtime-over-10-hrs',
+        value: 'over-10-hrs',
+        label: 'Over 10 hours'
+      },
+      {
+        id: 'playtime-over-100-hrs',
+        value: 'over-100-hrs',
+        label: 'Over 100 hours'
+      }
     ]
   };
   return (
     <FilterContainer>
-      <FilterDropdown title="review type" content={content.reviewType} default={0}/>
-      <FilterDropdown title="purchase type" content={content.purchaseType} default={0}/>
-      <FilterDropdown title="language"/>
-      <FilterDropdown title="date range"/>
-      <FilterDropdown title="playtime"/>
+      <FilterDropdown title="review type" content={content.reviewType}/>
+      <FilterDropdown title="purchase type" content={content.purchaseType}/>
+      <FilterDropdown title="language" content={content.language} default={1}/>
+      <FilterDropdown title="date range" content={content.dateRange}/>
+      <FilterDropdown title="playtime" content={content.playtime}/>
       <DisplaySelector />
       <ShowGraph>
         <ShowGraphTitle>Show graph</ShowGraphTitle>
