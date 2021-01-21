@@ -9,6 +9,7 @@ const SummaryContainer = styled.div`
   display: grid;
   grid-template-columns: 605px 1fr;
   border-bottom: 1px #000 solid;
+  position: relative;
 `;
 const OverallSummary = styled.div`
   grid-column: 1;
