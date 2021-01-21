@@ -4,10 +4,49 @@ import FilterDropdown from './FilterDropdown.jsx';
 import DisplaySelector from './DisplaySelector.jsx';
 
 const FilterBar = (props) => {
+  var content = {
+    reviewType: [
+      {
+        id: 'review-type-all',
+        value: 'all',
+        label: 'All',
+        data: props.allReviews
+      },
+      {
+        id: 'review-type-positive',
+        value: 'positive',
+        label: 'Positive',
+        data: props.positive
+      },
+      {
+        id: 'review-type-negative',
+        value: 'negative',
+        label: 'Negative',
+        data: props.allReviews - props.positive
+      }
+    ],
+    purchaseType: [
+      {
+        id: 'purchase-type-all',
+        value: 'all',
+        label: 'All'
+      },
+      {
+        id: 'purchase-type-vapor',
+        value: 'vapor',
+        label: 'Vapor Purchasers'
+      },
+      {
+        id: 'purchase-type-other',
+        value: 'other',
+        label: 'Other'
+      }
+    ]
+  };
   return (
     <FilterContainer>
-      <FilterDropdown title="review type"/>
-      <FilterDropdown title="purchase type"/>
+      <FilterDropdown title="review type" content={content.reviewType} default={0}/>
+      <FilterDropdown title="purchase type" content={content.purchaseType} default={0}/>
       <FilterDropdown title="language"/>
       <FilterDropdown title="date range"/>
       <FilterDropdown title="playtime"/>
