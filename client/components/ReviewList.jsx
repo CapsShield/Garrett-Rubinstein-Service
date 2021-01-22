@@ -1,6 +1,7 @@
 import React from 'react';
 import ReviewEntry from './ReviewEntry.jsx';
 import styled from 'styled-components';
+import PageChanger from './PageChanger.jsx';
 
 const ReviewList = (props) => {
   if (props.reviews.length === 0) {
@@ -10,11 +11,19 @@ const ReviewList = (props) => {
     </NoReviews>;
   }
 
-  return props.reviews.map((review) => (
-    <ReviewEntry review={review} key={review.id}/>
-  ));
+  return <ReviewsContainer>
+    {
+      props.reviews.map((review) => (
+        <ReviewEntry review={review} key={review.id} />
+      ))
+    }
+    <PageChanger page={props.page} changePage={props.changePage} total={props.total} />
+  </ReviewsContainer>;
 };
 
+const ReviewsContainer = styled.div`
+  width: 616px;
+`;
 const NoReviews = styled.div`
   width: 616px;
   height: 124px;
