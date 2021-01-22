@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import ReviewList from './Reviewlist.jsx';
 import SummaryBar from './SummaryBar.jsx';
 import FilterBar from './FilterBar.jsx';
@@ -43,17 +43,30 @@ const App = (props) => {
   };
 
   return (
-    <GridContainer>
-      <AppContainer>
-        <AppHeader>customer reviews</AppHeader>
-        <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
-        <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} />
-        <ReviewList reviews={reviews} page={page} changePage={changePage} total={total}/>
-      </AppContainer>
-    </GridContainer>
+    <div>
+      <GlobalStyle />
+      <GridContainer>
+        <AppContainer>
+          <AppHeader>customer reviews</AppHeader>
+          <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
+          <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} />
+          <ReviewList reviews={reviews} page={page} changePage={changePage} total={total} />
+        </AppContainer>
+      </GridContainer>
+    </div>
   );
 };
 
+const GlobalStyle = createGlobalStyle`
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #1b2938;
+    color: #c6d4df;
+    font-family: Arial, sans-serif;
+  }
+`;
 const AppHeader = styled.div`
   text-transform: uppercase;
   font-size: 14px;

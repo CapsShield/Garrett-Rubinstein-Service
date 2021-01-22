@@ -1,8 +1,0 @@
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-body {
-  background-color: #1b2938;
-  color: #c6d4df;
-  font-family: Arial, sans-serif;
-}
