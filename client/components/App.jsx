@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import ReviewList from './Reviewlist.jsx';
 import SummaryBar from './SummaryBar.jsx';
 import FilterBar from './FilterBar.jsx';
+import FilterInfo from './FilterInfo.jsx';
 
 
 
@@ -12,6 +13,10 @@ const App = (props) => {
   var [recentSummary, setRecentSummary] = useState([0, 1]);
   var [page, setPage] = useState(1);
   var [total, setTotal] = useState(1);
+  var [filters, setFilters] = useState([{
+    id: 'language-user',
+    label: 'Your Languages'
+  }]);
   useEffect(() => {
     //fetch page 0 of reviews
     fetch(`/api/games/${props.gameId || 1}/reviews/0`)
@@ -50,6 +55,7 @@ const App = (props) => {
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
           <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} />
+          <FilterInfo filters={filters} filterSummary={overallSummary}/>
           <ReviewList reviews={reviews} page={page} changePage={changePage} total={total} />
         </AppContainer>
       </GridContainer>
@@ -78,7 +84,7 @@ const AppHeader = styled.div`
 `;
 const GridContainer = styled.div`
   display: grid;
-  grid-column-template: 1fr 940px 1fr;
+  grid-template-columns: 1fr 940px 1fr;
   border-top: 1px #000 solid;
 `;
 const AppContainer = styled.div`
