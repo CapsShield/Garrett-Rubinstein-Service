@@ -8,12 +8,16 @@ const getGameRecentReviews = (gameId, pageNum = 0, cb) => {
     where: {
       gameId: gameId
     },
-    include: [Language, {
-      model: User, include: {
-        model: Game,
-        where: {id: gameId}
+    include: [
+      Language,
+      {
+        model: User,
+        include: {
+          model: Game,
+          where: { id: gameId }
+        }
       }
-    }],
+    ],
     order: [
       ['createdAt', 'DESC']
     ],
@@ -26,7 +30,7 @@ const getGameRecentReviews = (gameId, pageNum = 0, cb) => {
 
 const getCounts = (gameId, recentOnly, cb) => {
   var total = 0;
-  var where = {gameId: gameId};
+  var where = { gameId: gameId };
   if (recentOnly) {
     where.createdAt = {
       [Op.gte]: moment().subtract(30, 'days').toDate()
