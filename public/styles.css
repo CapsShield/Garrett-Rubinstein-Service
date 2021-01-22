@@ -1,109 +1,17 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
-:root {
-  --bg-main: #1b2938;
-  --text-main: #c6d4df;
-}
 body {
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  background-color: #1b2938;
+  color: #c6d4df;
   font-family: Arial, sans-serif;
 }
 
 /*** SUMMARY AREA ***/
 /*** REVIEW ENTRIES ***/
 
-.review-entry {
-  background-color: rgba(0, 0, 0, 0.2);
-  display: grid;
-  width: 616px;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 1px 1fr;
-  margin-bottom: 24px;
-}
-.gradient-top-border {
-  height: 1px;
-  grid-row: 1;
-  grid-column: 1 / span 2;
-  background-image: url("assets/maincol_gradient_rule.png");
-}
-.review-user-info {
-  grid-column: 1;
-  grid-row: 2;
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
-  width: 200px;
-}
-.user-info-ctn {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  grid-template-rows: 19px 17px 12px;
-  color: #7b8ea3;
-}
-.review-entry:hover .user-info-ctn {
-  color: #C1DBF4;
-}
-.avatar {
-  grid-row: 1 / span 2;
-  grid-column: 1;
-  padding: 2px;
-  height: 36px;
-  width: 36px;
-  background-image: linear-gradient(rgb(83, 164, 196) 5%, rgb(69, 128, 151) 95%);
-  background-clip: border-box;
-}
-.avatar-img {
-  height: 32px;
-  width: 32px;
-}
-.username {
-  grid-row: 1;
-  grid-column: 2;
-  font-size: 13px;
-  font-weight: bold;
-  max-width: 140px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.num-owned-games {
-  grid-row: 2;
-  grid-column: 2;
-  font-size: 11px;
-  width: fit-content
-}
-.num-reviews {
-  grid-row: 3;
-  grid-column: 1 / span 2;
-  font-size: 11px;
-  width: fit-content;
-}
-.username:hover, .num-owned-games:hover, .num-reviews:hover {
-  cursor: pointer;
-}
-.num-owned-games:hover, .num-reviews:hover {
-  color: #67c1f5;
-}
-.review-info {
-  grid-column: 2;
-  grid-row: 2;
-  display: flex;
-  flex-direction: column;
-  margin-left: 14px;
-  justify-content: center;
-}
-.review-header {
-  display: flex;
-  background-color: rgba(0, 0, 0, 0.2);
-  margin-top: 8px;
-  margin-bottom: 13px;
-  height: 40px;
-}
-.review-header:hover {
-  background-color: rgba( 255, 255, 255, 0.1 );
-  cursor: pointer;
-}
+
+
 .rec-thumb {
   margin-right: 10px;
 }
