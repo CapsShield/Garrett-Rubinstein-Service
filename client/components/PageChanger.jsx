@@ -16,6 +16,7 @@ const PageContainer = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 20px;
 `;
 const Current = styled.div`
   display: flex;
@@ -26,9 +27,15 @@ const Button = styled.button`
   display: flex;
   cursor: pointer;
   width: fit-content;
-  background: inherit;
-  color: inherit;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(to bottom, rgb(47, 137, 188) 5%, rgb(23, 67, 92) 95%);
+  color: rgb(164, 215, 245);
   border: none;
+  border-radius: 2px;
+  &:hover {
+    background-image: linear-gradient( to bottom, rgba(102,192,244,1) 5%, rgba(47,137,188,1) 95%);
+    color: #fff;
+  }
 `;
 const Prev = styled(Button)`
   grid-column: 1;
