@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import FilterDropdown from './FilterDropdown.jsx';
 import DisplaySelector from './DisplaySelector.jsx';
+import allFilters from '../allFilters.js';
 
 const FilterBar = (props) => {
   var content = {

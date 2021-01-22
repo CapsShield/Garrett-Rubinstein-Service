@@ -4,8 +4,12 @@ import ReviewList from './Reviewlist.jsx';
 import SummaryBar from './SummaryBar.jsx';
 import FilterBar from './FilterBar.jsx';
 import FilterInfo from './FilterInfo.jsx';
+import allFilters from '../allFilters.js';
 
-
+const defaultFilters = {};
+for (var key in allFilters) {
+  defaultFilters[key] = allFilters[key].filter(type => type.default === true)[0];
+}
 
 const App = (props) => {
   var [reviews, setReviews] = useState([]);
@@ -13,13 +17,21 @@ const App = (props) => {
   var [recentSummary, setRecentSummary] = useState([0, 1]);
   var [page, setPage] = useState(1);
   var [total, setTotal] = useState(1);
-  var [filters, setFilters] = useState([{
-    id: 'language-user',
-    label: 'Your Languages'
-  }]);
+  var [filters, setFilters] = useState(defaultFilters);
+
+  const getApiFilters = () => {
+    return {
+      reviewType: filters.reviewType.value,
+      purchaseType: filters.purchaseType.value,
+      language: filters.language.value,
+      dateRange: filters.dateRange.value,
+      playtime: filters.playtime.value
+    };
+  };
+
   useEffect(() => {
     //fetch page 0 of reviews
-    fetch(`/api/games/${props.gameId || 1}/reviews/0`)
+    fetch(`/api/games/${props.gameId || 1}/reviews/0/${JSON.stringify(getApiFilters())}`)
       .then(response => response.json())
       .then(parsed => {
         setReviews(parsed.rows);
@@ -27,7 +39,7 @@ const App = (props) => {
       })
       .catch(err => console.error(err));
 
-    fetch(`/api/games/${props.gameId || 1}/summary`)
+    fetch(`/api/games/${props.gameId || 1}/summary/${JSON.stringify(getApiFilters())}`)
       .then(response => response.json())
       .then(parsed => {
         setOverallSummary(parsed.overall);
@@ -37,7 +49,7 @@ const App = (props) => {
   }, []);
 
   const changePage = (newPage) => {
-    fetch(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`)
+    fetch(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}/${JSON.stringify(filters)}`)
       .then(response => response.json())
       .then(parsed => {
         setReviews(parsed.rows);
