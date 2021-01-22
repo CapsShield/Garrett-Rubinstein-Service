@@ -45,6 +45,7 @@ const App = (props) => {
   return (
     <GridContainer>
       <AppContainer>
+        <AppHeader>customer reviews</AppHeader>
         <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
         <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} />
         <ReviewList reviews={reviews} page={page} changePage={changePage} total={total}/>
@@ -53,9 +54,19 @@ const App = (props) => {
   );
 };
 
+const AppHeader = styled.div`
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #fff;
+  letter-spacing: 2px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  margin: 0px;
+`;
 const GridContainer = styled.div`
   display: grid;
-  grid-column-template: 1fr 940px 1fr
+  grid-column-template: 1fr 940px 1fr;
+  border-top: 1px #000 solid;
 `;
 const AppContainer = styled.div`
   grid-column: 2;
