@@ -18,50 +18,50 @@ const ReviewEntry = ({ review }) => {
       </ReviewUserInfo>
       <ReviewInfo className="review-info">
         <ReviewHeader className="review-header">
-          <div className="rec-thumb">
+          <RecThumb className="rec-thumb">
             <img src={`assets/${review.positive ? 'thumbUp' : 'thumbDown'}.png`} />
-          </div>
-          <div className="review-header-text">
-            <div className="rec-text">{review.positive ? 'Recommended' : 'Not Recommended'}</div>
-            <div className="rec-hours">
+          </RecThumb>
+          <ReviewHeaderText className="review-header-text">
+            <RecText className="rec-text">{review.positive ? 'Recommended' : 'Not Recommended'}</RecText>
+            <RecHours className="rec-hours">
               {`${review.user.games[0].usersgame.hoursPlayed} hrs on record
               ${review.user.games[0].usersgame.hoursPlayed === review.hoursWhenReviewed ? '' : ` (${review.hoursWhenReviewed} hrs at review time)`}`}
-            </div>
-          </div>
-          <div className="review-source">
+            </RecHours>
+          </ReviewHeaderText>
+          <ReviewSource className="review-source">
             <img src={`assets/${review.user.games[0].usersgame.purchasedOnSteam ? 'icon_review_steam' : 'icon_review_key'}.png`} />
-          </div>
+          </ReviewSource>
         </ReviewHeader>
-        <div className="posted-date">{`posted: ${moment(new Date(review.createdAt)).format('MMMM D, YYYY')}`}</div>
-        <div className="review-content">
+        <PostedDate className="posted-date">{`posted: ${moment(new Date(review.createdAt)).format('MMMM D, YYYY')}`}</PostedDate>
+        <ReviewContent className="review-content">
           {review.reviewText}
-        </div>
-        <div className="review-content-end"></div>
-        <div className="vote-controls">
-          <div className="vote-prompt">Was this review helpful?</div>
-          <div className="vote-btn-ctn">
-            <div className="vote-btn vote-btn-helpful">
-              <i className="icon-16 icon-helpful"></i>
-              <span className="vote-btn-text">Yes</span>
-            </div>
-            <div className="vote-btn vote-btn-unhelpful">
-              <i className="icon-16 icon-unhelpful"></i>
-              <span className="vote-btn-text">No</span>
-            </div>
-            <div className="vote-btn vote-btn-funny">
-              <i className="icon-16 icon-funny"></i>
-              <span className="vote-btn-text">Funny</span>
-            </div>
-            <div className="vote-btn vote-btn-award">
-              <img className="icon-award" src="assets/award_icon.svg"></img>
-              <span className="vote-btn-text">Award</span>
-            </div>
-          </div>
-        </div>
-        <div className="vote-info">
+        </ReviewContent>
+        <ReviewContentEnd className="review-content-end"></ReviewContentEnd>
+        <VoteControls className="vote-controls">
+          <VotePrompt className="vote-prompt">Was this review helpful?</VotePrompt>
+          <VoteButtonContainer className="vote-btn-ctn">
+            <VoteButton className="vote-btn vote-btn-helpful">
+              <IconHelpful className="icon-16 icon-helpful"></IconHelpful>
+              <VoteButtonText className="vote-btn-text">Yes</VoteButtonText>
+            </VoteButton>
+            <VoteButton className="vote-btn vote-btn-unhelpful">
+              <IconUnhelpful className="icon-16 icon-unhelpful"></IconUnhelpful>
+              <VoteButtonText className="vote-btn-text">No</VoteButtonText>
+            </VoteButton>
+            <VoteButton className="vote-btn vote-btn-funny">
+              <IconFunny className="icon-16 icon-funny"></IconFunny>
+              <VoteButtonText className="vote-btn-text">Funny</VoteButtonText>
+            </VoteButton>
+            <VoteButton className="vote-btn vote-btn-award">
+              <IconAward className="icon-award" src="assets/award_icon.svg"></IconAward>
+              <VoteButtonText className="vote-btn-text">Award</VoteButtonText>
+            </VoteButton>
+          </VoteButtonContainer>
+        </VoteControls>
+        <VoteInfo className="vote-info">
           <div className="helpful-count">{`${review.helpfulVotes} ${review.helpfulVotes === 1 ? 'person' : 'people'} found this review helpful`}</div>
           <div className="funny-count">{`${review.funnyVotes} ${review.funnyVotes === 1 ? 'person' : 'people'} found this review funny`}</div>
-        </div>
+        </VoteInfo>
       </ReviewInfo>
     </ReviewEntryContainer>
   );
@@ -162,4 +162,121 @@ const ReviewHeader = styled.div`
     cursor: pointer;
   }
 `;
+const RecThumb = styled.div`
+  margin-right: 10px;
+`;
+const ReviewHeaderText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+const RecText = styled.div`
+  font-size: 16px;
+  line-height: 19px;
+  padding-top: 3px;
+`;
+const RecHours = styled.div`
+  font-size: 11px;
+  color: #8091a2;
+  opacity: 0.6;
+  font-weight: 300;
+  line-height: 15px;
+`;
+const ReviewSource = styled.div`
+  justify-self: flex-end;
+  margin-right: 5px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+`;
+const PostedDate = styled.div`
+  text-transform: uppercase;
+  color: #8091a2;
+  opacity: 0.6;
+  font-size: 10px;
+  margin-bottom: 8px;
+`;
+const ReviewContent = styled.div`
+  font-size: 13px;
+  margin-right: 8px;
+  line-height: 17px;
+  color: #acb2b8;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+`;
+const ReviewContentEnd = styled.div`
+  height: 12px;
+  border-bottom: 1px #363f4c solid;
+`;
+const VoteControls = styled.div`
+  margin: 8px 0px;
+`;
+const VotePrompt = styled.div`
+  color: #8091a2;
+  font-size: 12px;
+  opacity: 0.6;
+`;
+const VoteButtonContainer = styled.div`
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 5px;
+`;
+const VoteButton = styled.div`
+  height: 22px;
+  background-color: #212c3d;
+  color: #66c0f4;
+  font-size: 12px;
+  padding: 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 1px;
+  border: 2px #212c3d none;
+  border-radius: 2px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background: #66c0f4;
+  }
+`;
+const VoteButtonText = styled.span`
+  text-align: center;
+  vertical-align: center;
+  margin-left: 2px;
+`;
+const Icon16 = styled.i`
+  height: 16px;
+  width: 16px;
+  background-image: url("assets/icons_16.png");
+  background-clip: border-box;
+`;
+const IconHelpful = styled(Icon16)`
+  background-position: -112px -16px;
+  ${VoteButton}:hover & {
+    background-position: -144px -16px;
+  }
+`;
+const IconUnhelpful = styled(Icon16)`
+  background-position: -64px -16px;
+  ${VoteButton}:hover & {
+    background-position: -80px -16px;
+  }
+`;
+const IconFunny = styled(Icon16)`
+  background-position: -208px -16px;
+  ${VoteButton}:hover & {
+    background-position: -224px -16px;
+  }
+`;
+const IconAward = styled.img`
+  height: 16px;
+`;
+const VoteInfo = styled.div`
+  color: #647580;
+  font-size: 12px;
+  margin-bottom: 8px;
+`;
+
 export default ReviewEntry;
