@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PageChanger = ({page, changePage, total}) => {
+const PageChanger = ({page, fetchPage, total}) => {
   var lastPage = Math.ceil(total / 10);
   return (
     <PageContainer>
-      {page === 1 ? null : <Prev onClick={() => changePage(page - 1)}>&lt;</Prev>}
+      {page === 1 ? null : <Prev onClick={() => fetchPage(page - 1)}>&lt;</Prev>}
       <Current>{page}/{lastPage}</Current>
-      {page === lastPage ? null : <Next onClick={() => changePage(page + 1)}>&gt;</Next>}
+      {page === lastPage ? null : <Next onClick={() => fetchPage(page + 1)}>&gt;</Next>}
     </PageContainer>
   );
 };

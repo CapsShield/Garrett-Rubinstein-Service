@@ -39,6 +39,17 @@ const App = (props) => {
       .catch(err => console.error(err));
   };
 
+  const fetchPage = (newPage) => {
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, getApiFilters()))
+      .then(response => response.json())
+      .then(parsed => {
+        setReviews(parsed.rows);
+        setTotal(parsed.count);
+        setPage(newPage);
+      })
+      .catch(err => console.error(err));
+  };
+
   useEffect(() => {
     //fetch page 0 of reviews
     fetchFirstPage(parsed => {
@@ -56,16 +67,7 @@ const App = (props) => {
       .catch(err => console.error(err));
   }, []);
 
-  const changePage = (newPage) => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, getApiFilters()))
-      .then(response => response.json())
-      .then(parsed => {
-        setReviews(parsed.rows);
-        setTotal(parsed.count);
-        setPage(newPage);
-      })
-      .catch(err => console.error(err));
-  };
+
 
   return (
     <div>
@@ -76,7 +78,7 @@ const App = (props) => {
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
           <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} setFilters={setFilters}/>
           <FilterInfo filters={filters} filterSummary={filteredSummary}/>
-          <ReviewList reviews={reviews} page={page} changePage={changePage} total={total} />
+          <ReviewList reviews={reviews} page={page} fetchPage={fetchPage} total={total} />
         </AppContainer>
       </GridContainer>
     </div>
