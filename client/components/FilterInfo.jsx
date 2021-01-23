@@ -6,7 +6,7 @@ import FilterResults from './FilterResults.jsx';
 const FilterInfo = (props) => {
   return (
     <FilterInfoContainer>
-      {props.filters.length === 0 ? null : <ActiveFilters filters={props.filters}/>}
+      {props.filters.length === 0 ? null : <ActiveFilters filters={props.filters} setFilters={props.setFilters}/>}
       <FilterResults filterSummary={props.filterSummary}/>
     </FilterInfoContainer>
   );

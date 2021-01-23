@@ -1,13 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
+import allFilters from '../allFilters.js';
 
-const ActiveFilters = ({ filters }) => {
+const openFilters = {};
+for (var key in allFilters) {
+  openFilters[key] = allFilters[key].filter(type => type.hideActive === true)[0];
+}
+
+const ActiveFilters = ({ filters, setFilters }) => {
+  const revertFilter = (filterType) => {
+    setFilters(filters => {
+      filters[filterType] = openFilters[filterType];
+      return Object.assign({}, filters);
+    });
+  };
+  const handleClick = (e) => {
+    revertFilter(e.target.getAttribute('data-type'));
+  };
+
   return (
     <ActiveFilterContainer>
       <ActiveFilterTitle>Filters</ActiveFilterTitle>
       {Object.keys(filters).map(filterType => {
         const filter = filters[filterType];
-        return filter.hideActive ? null : (<FilterBox key={filter.id}>
+        return filter.hideActive ? null : (<FilterBox key={filter.id} data-type={filterType} onClick={handleClick}>
           {filter.activeLabel ? filter.activeLabel : filter.label}
         </FilterBox>);
       })}
