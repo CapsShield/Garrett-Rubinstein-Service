@@ -34,9 +34,11 @@ const getCounts = (gameId, recentOnly, filters, cb) => {
     .then(count => {
       total = count;
     })
-    .then(() => Review.count({
-      where: wherePos
-    }))
+    .then(() => {
+      return filters.positive === false ? 0 : Review.count({
+        where: wherePos
+      });
+    })
     .then((posCount) => cb(null, [posCount, total]))
     .catch((err) => cb(err));
 };
