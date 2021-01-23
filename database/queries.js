@@ -43,7 +43,14 @@ const getCounts = (gameId, recentOnly, filters, cb) => {
     .catch((err) => cb(err));
 };
 
+const getFilterTotal = (gameId, filter) => {
+  var where = Object.assign({ gameId: gameId }, filter);
+  return Review.count({ where: where });
+};
+
+
 module.exports = {
   getGameRecentReviews,
-  getCounts
+  getCounts,
+  getFilterTotal
 };

@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const {getGameRecentReviews, getCounts} = require('../database/queries.js');
+const {getGameRecentReviews, getCounts, getFilterTotal} = require('../database/queries.js');
 const parseFilters = require('./utils/parseFilters.js');
 
 const app = express();
@@ -57,6 +57,18 @@ app.get('/api/games/:id/summary/filterOnly', (req, res) => {
       res.send(summaries);
     }
   });
+});
+
+app.get('/api/games/:id/filterCounts', (req, res) => {
+  const counts = {};
+  getFilterTotal(req.params.id, {positive: true})
+    .then((total) => counts.positive = total)
+    .then(() => getFilterTotal(req.params.id, {purchasedOnVapor: true}))
+    .then((total) => counts.vapor = total)
+    .then(() => getFilterTotal(req.params.id, {languageId: 1}))
+    .then((total) => counts.language = total)
+    .then(() => res.send(counts))
+    .catch(err => res.status(500).send(err));
 });
 
 app.listen(PORT, () => {
