@@ -5,14 +5,13 @@ import DisplaySelector from './DisplaySelector.jsx';
 import allFilters from '../allFilters.js';
 
 const FilterBar = (props) => {
-  var content = allFilters;
   return (
     <FilterContainer>
-      <FilterDropdown title="review type" content={content.reviewType}/>
-      <FilterDropdown title="purchase type" content={content.purchaseType}/>
-      <FilterDropdown title="language" content={content.language}/>
-      <FilterDropdown title="date range" content={content.dateRange}/>
-      <FilterDropdown title="playtime" content={content.playtime}/>
+      <FilterDropdown title="review type" content={allFilters.reviewType}/>
+      <FilterDropdown title="purchase type" content={allFilters.purchaseType}/>
+      <FilterDropdown title="language" content={allFilters.language}/>
+      <FilterDropdown title="date range" content={allFilters.dateRange}/>
+      <FilterDropdown title="playtime" content={allFilters.playtime}/>
       <DisplaySelector />
       <ShowGraph>
         <ShowGraphTitle>Show graph</ShowGraphTitle>
