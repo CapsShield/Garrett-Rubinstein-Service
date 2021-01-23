@@ -19,9 +19,9 @@ const getGameRecentReviews = (gameId, pageNum = 0, filters, cb) => {
     .catch((err) => cb(err));
 };
 
-const getCounts = (gameId, recentOnly, cb) => {
+const getCounts = (gameId, recentOnly, filters, cb) => {
   var total = 0;
-  var where = { gameId: gameId };
+  var where = Object.assign({ gameId: gameId }, filters);
   if (recentOnly) {
     where.createdAt = {
       [Op.gte]: moment().subtract(30, 'days').toDate()

@@ -22,17 +22,25 @@ app.get('/api/games/:id/reviews/:page/:filters', (req, res) => {
 
 app.get('/api/games/:id/summary/:filters', (req, res) => {
   var summaries = {};
-  getCounts(req.params.id, false, (err, counts) => {
+  var filters = parseFilters(JSON.parse(req.params.filters));
+  getCounts(req.params.id, false, {}, (err, counts) => {
     if (err) {
       res.status(500).send(err);
     } else {
       summaries.overall = counts;
-      getCounts(req.params.id, true, (err, recentCounts) => {
+      getCounts(req.params.id, true, {}, (err, recentCounts) => {
         if (err) {
           res.status(500).send(err);
         } else {
           summaries.recent = recentCounts;
-          res.send(summaries);
+          getCounts(req.params.id, false, filters, (err, filteredCounts) => {
+            if (err) {
+              res.status(500).send(err);
+            } else {
+              summaries.filtered = filteredCounts;
+              res.send(summaries);
+            }
+          });
         }
       });
     }
