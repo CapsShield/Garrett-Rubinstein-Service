@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ActiveFilters = ({filters}) => {
+const ActiveFilters = ({ filters }) => {
   return (
     <ActiveFilterContainer>
       <ActiveFilterTitle>Filters</ActiveFilterTitle>
-      {Object.keys(filters).map(filterType => <FilterBox key={filters[filterType].id} >{filters[filterType].label}</FilterBox>)}
+      {Object.keys(filters).map(filterType => {
+        const filter = filters[filterType];
+        return filter.hideActive ? null : (<FilterBox key={filter.id}>{filter.label}</FilterBox>);
+      })}
     </ActiveFilterContainer>
   );
 };
