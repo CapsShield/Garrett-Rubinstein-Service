@@ -25,7 +25,7 @@ const FilterDropdown = (props) => {
             }
             return (
               <ContentLine key={content.id}>
-                <input type="radio" id={content.id} value={content.value} checked={selected === content.value} onChange={changeHandler} data-index={i} data-type={props.type}/>
+                <input type="radio" id={content.id} value={content.value} checked={selected === content.value} onChange={changeHandler} data-index={i} data-type={props.type} disabled={content.disabled}/>
                 <ContentLabel htmlFor={content.id}>
                   {content.label}
                   {!content.dataFromProps ? null :
