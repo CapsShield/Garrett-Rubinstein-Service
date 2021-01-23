@@ -19,7 +19,24 @@ const App = (props) => {
   var [total, setTotal] = useState(1);
   var [filters, setFilters] = useState(defaultFilters);
   var [filteredSummary, setFilteredSummary] = useState([0, 1]);
+  var [initialCounts, setInitialCounts] = useState({
+    positive: 0,
+    vapor: 0,
+    language: 0
+  });
 
+  const fetchInitialCounts = () => {
+    fetch(`/api/games/${props.gameId || 1}/filterCounts`)
+      .then(response => response.json())
+      .then(parsed => {
+        setInitialCounts({
+          positive: parsed.positive,
+          vapor: parsed.vapor,
+          language: parsed.language
+        });
+      })
+      .catch(err => console.error(err));
+  };
   const getApiFilters = () => {
     return {
       reviewType: filters.reviewType.value,
@@ -71,13 +88,14 @@ const App = (props) => {
   };
 
   useEffect(() => {
-    //fetch page 0 of reviews
     fetchFirstPage(parsed => {
       setReviews(parsed.rows);
       setTotal(parsed.count);
     });
 
     fetchSummary();
+
+    fetchInitialCounts();
   }, []);
 
   useEffect(() => {
@@ -97,7 +115,7 @@ const App = (props) => {
         <AppContainer>
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
-          <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters}/>
+          <FilterBar positive={initialCounts.positive} vapor={initialCounts.vapor} language={initialCounts.language} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters}/>
           <FilterInfo filters={filters} setFilters={setFilters} filterSummary={filteredSummary}/>
           <ReviewList reviews={reviews} page={page} fetchPage={fetchPage} total={total} />
         </AppContainer>
