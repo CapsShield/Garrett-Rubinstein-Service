@@ -7,7 +7,9 @@ const ActiveFilters = ({ filters }) => {
       <ActiveFilterTitle>Filters</ActiveFilterTitle>
       {Object.keys(filters).map(filterType => {
         const filter = filters[filterType];
-        return filter.hideActive ? null : (<FilterBox key={filter.id}>{filter.label}</FilterBox>);
+        return filter.hideActive ? null : (<FilterBox key={filter.id}>
+          {filter.activeLabel ? filter.activeLabel : filter.label}
+        </FilterBox>);
       })}
     </ActiveFilterContainer>
   );
