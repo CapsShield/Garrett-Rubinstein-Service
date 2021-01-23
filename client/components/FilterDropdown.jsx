@@ -3,16 +3,23 @@ import styled from 'styled-components';
 
 const FilterDropdown = (props) => {
   const [selected, setSelected] = useState(props.content.find(option => option.default === true).value);
-  const changeHandler = (e) => setSelected(e.target.value);
+  const changeHandler = (e) => {
+    setSelected(e.target.value);
+    console.log(e.target.getAttribute('data-index'));
+    console.log(e.target.getAttribute('data-type'));
+  };
   return (
     <DropdownMenu>
       <DropdownTitle>{props.title}</DropdownTitle>
       <DropdownContentContainer>
         <DropdownContent>
-          {!props.content ? null : props.content.map(content => {
+          {!props.content ? null : props.content.map((content, i) => {
+            if (content.hideDropdown) {
+              return null;
+            }
             return (
               <ContentLine key={content.id}>
-                <input type="radio" id={content.id} value={content.value} checked={selected === content.value} onChange={changeHandler}/>
+                <input type="radio" id={content.id} value={content.value} checked={selected === content.value} onChange={changeHandler} data-index={i} data-type={props.type}/>
                 <ContentLabel htmlFor={content.id}>
                   {content.label}
                   {!content.dataFromProps ? null :
