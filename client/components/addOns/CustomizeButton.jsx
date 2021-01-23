@@ -20,6 +20,12 @@ const CustomizeBtn = styled.button`
   border: none;
   border-radius: 2px;
   margin-left: 5px;
+  cursor: pointer;
+  &:hover {
+    background: #67c1f5;
+    color: #fff;
+    padding: 2px 4px;
+  }
 `;
 
 export default CustomizeButton;

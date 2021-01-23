@@ -15,6 +15,7 @@ const FilterDropdown = (props) => {
       <DropdownTitle>{props.title}</DropdownTitle>
       <DropdownContentContainer>
         <DropdownContent>
+          {props.preContent ? props.preContent : null}
           {!props.content ? null : props.content.map((content, i) => {
             if (content.hideDropdown) {
               return null;
