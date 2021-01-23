@@ -9,7 +9,7 @@ for (var i = 0; i < usersGames.length; i++) {
   });
   var hoursPlayed = faker.random.number({
     min: 0.1,
-    max: 500,
+    max: 300,
     precision: 0.1
   });
   seeds.push({
