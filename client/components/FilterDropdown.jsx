@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const FilterDropdown = (props) => {
-  const [selected, setSelected] = useState(props.content.find(option => option.default === true).value);
   const changeHandler = (e) => {
-    setSelected(e.target.value);
     const filterType = e.target.getAttribute('data-type');
     const filter = props.content[e.target.getAttribute('data-index')];
     console.log(filterType);
@@ -25,7 +23,7 @@ const FilterDropdown = (props) => {
             }
             return (
               <ContentLine key={content.id}>
-                <input type="radio" id={content.id} value={content.value} checked={selected === content.value} onChange={changeHandler} data-index={i} data-type={props.type} disabled={content.disabled}/>
+                <input type="radio" id={content.id} value={content.value} checked={props.filters[props.type].value === content.value} onChange={changeHandler} data-index={i} data-type={props.type} disabled={content.disabled}/>
                 <ContentLabel htmlFor={content.id}>
                   {content.label}
                   {!content.dataFromProps ? null :

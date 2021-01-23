@@ -76,7 +76,7 @@ const App = (props) => {
         <AppContainer>
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
-          <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} setFilters={setFilters}/>
+          <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters}/>
           <FilterInfo filters={filters} setFilters={setFilters} filterSummary={filteredSummary}/>
           <ReviewList reviews={reviews} page={page} fetchPage={fetchPage} total={total} />
         </AppContainer>
