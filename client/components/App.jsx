@@ -30,17 +30,23 @@ const App = (props) => {
     };
   };
 
+  const addQueryParams = (url, params) => url + Object.keys(params).map((paramKey, i) => `${i === 0 ? '?' : '&' }${paramKey}=${params[paramKey]}`).join('');
+
+  const fetchFirstPage = (cb = () => {}) => {
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/0`, getApiFilters()))
+      .then(response => response.json())
+      .then(parsed => cb(parsed))
+      .catch(err => console.error(err));
+  };
+
   useEffect(() => {
     //fetch page 0 of reviews
-    fetch(`/api/games/${props.gameId || 1}/reviews/0/${JSON.stringify(getApiFilters())}`)
-      .then(response => response.json())
-      .then(parsed => {
-        setReviews(parsed.rows);
-        setTotal(parsed.count);
-      })
-      .catch(err => console.error(err));
+    fetchFirstPage(parsed => {
+      setReviews(parsed.rows);
+      setTotal(parsed.count);
+    });
 
-    fetch(`/api/games/${props.gameId || 1}/summary/${JSON.stringify(getApiFilters())}`)
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary`, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setOverallSummary(parsed.overall);
@@ -51,7 +57,7 @@ const App = (props) => {
   }, []);
 
   const changePage = (newPage) => {
-    fetch(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}/${JSON.stringify(getApiFilters())}`)
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setReviews(parsed.rows);

@@ -8,8 +8,8 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
-app.get('/api/games/:id/reviews/:page/:filters', (req, res) => {
-  var filters = parseFilters(JSON.parse(req.params.filters));
+app.get('/api/games/:id/reviews/:page', (req, res) => {
+  var filters = parseFilters(req.query);
   console.log(filters);
   getGameRecentReviews(req.params.id, req.params.page, filters, (err, reviews) => {
     if (err) {
@@ -20,9 +20,10 @@ app.get('/api/games/:id/reviews/:page/:filters', (req, res) => {
   });
 });
 
-app.get('/api/games/:id/summary/:filters', (req, res) => {
+app.get('/api/games/:id/summary', (req, res) => {
+  console.log(req.query);
   var summaries = {};
-  var filters = parseFilters(JSON.parse(req.params.filters));
+  var filters = parseFilters(req.query);
   getCounts(req.params.id, false, {}, (err, counts) => {
     if (err) {
       res.status(500).send(err);
