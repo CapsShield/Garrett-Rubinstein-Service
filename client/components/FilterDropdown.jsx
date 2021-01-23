@@ -5,8 +5,6 @@ const FilterDropdown = (props) => {
   const changeHandler = (e) => {
     const filterType = e.target.getAttribute('data-type');
     const filter = props.content[e.target.getAttribute('data-index')];
-    console.log(filterType);
-    console.log(filter);
     props.setFilters((filters) => {
       filters[filterType] = filter;
       return Object.assign({}, filters); //ensure it's a new object reference to force a re-render with  state update
