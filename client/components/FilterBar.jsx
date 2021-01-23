@@ -5,104 +5,12 @@ import DisplaySelector from './DisplaySelector.jsx';
 import allFilters from '../allFilters.js';
 
 const FilterBar = (props) => {
-  var content = {
-    reviewType: [
-      {
-        id: 'review-type-all',
-        value: 'all',
-        label: 'All',
-        data: props.allReviews
-      },
-      {
-        id: 'review-type-positive',
-        value: 'positive',
-        label: 'Positive',
-        data: props.positive
-      },
-      {
-        id: 'review-type-negative',
-        value: 'negative',
-        label: 'Negative',
-        data: props.allReviews - props.positive
-      }
-    ],
-    purchaseType: [
-      {
-        id: 'purchase-type-all',
-        value: 'all',
-        label: 'All'
-      },
-      {
-        id: 'purchase-type-vapor',
-        value: 'vapor',
-        label: 'Vapor Purchasers',
-        tooltip: 'These are reviews written by customers that purchased the game directly from Vapor.'
-      },
-      {
-        id: 'purchase-type-other',
-        value: 'other',
-        label: 'Other',
-        tooltip: 'These are reviews written by customers that did not purchase the game on Vapor. (This may include legitimate sources such as other digital stores, retail stores, testing purposes, or press review purposes. Or, from inappropriate sources such as copies given in exchange for reviews.)'
-      }
-    ],
-    language: [
-      {
-        id: 'language-all',
-        value: 'all',
-        label: 'All Languages'
-      },
-      {
-        id: 'language-user',
-        value: 'user',
-        label: 'Your Languages',
-        tooltip: 'Your preferences are currently set to show content authored in these languages: English.\n\n Click \'customize\' below to modify your preferences.'
-      }
-    ],
-    dateRange: [
-      {
-        id: 'date-range-lifetime',
-        value: 'lifetime',
-        label: 'Lifetime'
-      },
-      {
-        id: 'date-range-include',
-        value: 'include',
-        label: 'Only Specific Range (Select on graph above)'
-      },
-      {
-        id: 'date-range-exclude',
-        value: 'exclude',
-        label: 'Exclude Specific Range (Select on graph above)'
-      }
-    ],
-    playtime: [
-      {
-        id: 'playtime-no-min',
-        value: 'no-min',
-        label: 'No Minimum',
-      },
-      {
-        id: 'playtime-over-1-hr',
-        value: 'over-1-hr',
-        label: 'Over 1 hour'
-      },
-      {
-        id: 'playtime-over-10-hrs',
-        value: 'over-10-hrs',
-        label: 'Over 10 hours'
-      },
-      {
-        id: 'playtime-over-100-hrs',
-        value: 'over-100-hrs',
-        label: 'Over 100 hours'
-      }
-    ]
-  };
+  var content = allFilters;
   return (
     <FilterContainer>
       <FilterDropdown title="review type" content={content.reviewType}/>
       <FilterDropdown title="purchase type" content={content.purchaseType}/>
-      <FilterDropdown title="language" content={content.language} default={1}/>
+      <FilterDropdown title="language" content={content.language}/>
       <FilterDropdown title="date range" content={content.dateRange}/>
       <FilterDropdown title="playtime" content={content.playtime}/>
       <DisplaySelector />
