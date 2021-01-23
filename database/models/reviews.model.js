@@ -6,6 +6,7 @@ const Review = db.define('review', {
   helpfulVotes: Sequelize.INTEGER,
   unhelpfulVotes: Sequelize.INTEGER,
   funnyVotes: Sequelize.INTEGER,
+  hoursPlayed: Sequelize.DECIMAL(10, 1),
   hoursWhenReviewed: Sequelize.DECIMAL(10, 1),
   createdAt: Sequelize.DATE,
   positive: Sequelize.BOOLEAN

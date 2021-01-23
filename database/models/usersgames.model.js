@@ -4,7 +4,6 @@ const Game = require('./games.model.js');
 const User = require('./users.model.js');
 
 const UsersGames = db.define('usersgame', {
-  hoursPlayed: Sequelize.DECIMAL(10, 1),
   purchasedOnSteam: Sequelize.BOOLEAN,
   /*GameId: {
     type: Sequelize.INTEGER,

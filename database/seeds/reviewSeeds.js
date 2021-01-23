@@ -7,6 +7,11 @@ for (var i = 0; i < usersGames.length; i++) {
     min: 20,
     max: 80
   });
+  var hoursPlayed = faker.random.number({
+    min: 0.1,
+    max: 500,
+    precision: 0.1
+  });
   seeds.push({
     languageId: faker.random.number(100) < 90 ? 1 : 2,
     gameId: usersGames[i].gameId,
@@ -14,9 +19,10 @@ for (var i = 0; i < usersGames.length; i++) {
     helpfulVotes: faker.random.number(1000),
     unhelpfulVotes: faker.random.number(1000),
     funnyVotes: faker.random.number(1000),
+    hoursPlayed: hoursPlayed,
     hoursWhenReviewed: faker.random.number({
       min: 0.1,
-      max: usersGames[i].hoursPlayed,
+      max: hoursPlayed,
       precision: 0.1
     }),
     createdAt: faker.date.past(),

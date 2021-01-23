@@ -4,12 +4,20 @@ const moment = require('moment');
 const { Op } = require('sequelize');
 
 const getGameRecentReviews = (gameId, pageNum = 0, cb) => {
+  /*const where = {
+    review: { gameId: gameId },
+
+  };*/
+
   Review.findAndCountAll({
     where: {
       gameId: gameId
     },
     include: [
-      Language,
+      {
+        model: Language,
+        where: {}
+      },
       {
         model: User,
         include: {

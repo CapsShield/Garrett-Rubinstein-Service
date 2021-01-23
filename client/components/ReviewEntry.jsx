@@ -24,8 +24,8 @@ const ReviewEntry = ({ review }) => {
           <ReviewHeaderText className="review-header-text">
             <RecText className="rec-text">{review.positive ? 'Recommended' : 'Not Recommended'}</RecText>
             <RecHours className="rec-hours">
-              {`${review.user.games[0].usersgame.hoursPlayed} hrs on record
-              ${review.user.games[0].usersgame.hoursPlayed === review.hoursWhenReviewed ? '' : ` (${review.hoursWhenReviewed} hrs at review time)`}`}
+              {`${review.hoursPlayed} hrs on record
+              ${review.hoursPlayed === review.hoursWhenReviewed ? '' : ` (${review.hoursWhenReviewed} hrs at review time)`}`}
             </RecHours>
           </ReviewHeaderText>
           <ReviewSource className="review-source">
