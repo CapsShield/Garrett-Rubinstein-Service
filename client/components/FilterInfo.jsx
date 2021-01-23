@@ -6,8 +6,12 @@ import FilterResults from './FilterResults.jsx';
 const FilterInfo = (props) => {
   return (
     <FilterInfoContainer>
-      {props.filters.length === 0 ? null : <ActiveFilters filters={props.filters} setFilters={props.setFilters}/>}
-      <FilterResults filterSummary={props.filterSummary}/>
+      {Object.keys(props.filters)
+        .map(type => props.filters[type])
+        .filter(filter => !filter.hideActive)
+        .length === 0 ? null : <ActiveFilters filters={props.filters} setFilters={props.setFilters}/>
+      }
+      {props.filters.reviewType.value !== 'all' ? null : <FilterResults filterSummary={props.filterSummary}/>}
     </FilterInfoContainer>
   );
 };
