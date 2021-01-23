@@ -41,6 +41,7 @@ const FilterDropdown = (props) => {
               </ContentLine>
             );
           })}
+          {props.postContent ? props.postContent : null}
         </DropdownContent>
       </DropdownContentContainer>
     </DropdownMenu>

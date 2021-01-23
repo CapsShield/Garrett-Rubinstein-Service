@@ -28,20 +28,24 @@ const allFilters = {
       value: 'all',
       label: 'All',
       hideActive: true,
-      default: true
+      default: true,
+      dataFromProps: 'allReviews'
     },
     {
       id: 'purchase-type-vapor',
       value: 'vapor',
       label: 'Vapor Purchasers',
-      tooltip: 'These are reviews written by customers that purchased the game directly from Vapor.'
+      tooltip: 'These are reviews written by customers that purchased the game directly from Vapor.',
+      dataFromProps: 'vapor'
     },
     {
       id: 'purchase-type-other',
       value: 'other',
       label: 'Other',
       tooltip: 'These are reviews written by customers that did not purchase the game on Vapor. (This may include legitimate sources such as other digital stores, retail stores, testing purposes, or press review purposes. Or, from inappropriate sources such as copies given in exchange for reviews.)',
-      activeLabel: 'Not purchased on Vapor'
+      activeLabel: 'Not purchased on Vapor',
+      dataFromProps: ['allReviews', 'vapor'],
+      dataFunction: (all, vapor) => (all - vapor)
     }
   ],
   language: [
@@ -49,14 +53,16 @@ const allFilters = {
       id: 'language-all',
       value: 'all',
       label: 'All Languages',
-      hideActive: true
+      hideActive: true,
+      dataFromProps: 'allReviews'
     },
     {
       id: 'language-user',
       value: 'user',
       label: 'Your Languages',
       tooltip: 'Your preferences are currently set to show content authored in these languages: English.\n\n Click \'customize\' below to modify your preferences.',
-      default: true
+      default: true,
+      dataFromProps: 'language'
     }
   ],
   dateRange: [
