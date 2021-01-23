@@ -7,8 +7,8 @@ const CustomizeButton = () =>
   </Container>;
 
 const Container = styled.div`
-  padding: 0;
   margin: 0;
+  padding: 0;
 `;
 
 const CustomizeBtn = styled.button`
