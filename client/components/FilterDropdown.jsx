@@ -15,7 +15,14 @@ const FilterDropdown = (props) => {
                 <input type="radio" id={content.id} value={content.value} checked={selected === content.value} onChange={changeHandler}/>
                 <ContentLabel htmlFor={content.id}>
                   {content.label}
-                  {content.data ? <ContentData>({content.data})</ContentData> : null}
+                  {!content.dataFromProps ? null :
+                    <ContentData>({
+                      !Array.isArray(content.dataFromProps) ? props[content.dataFromProps] :
+                        content.dataFunction(...(
+                          content.dataFromProps.map(prop => props[prop])
+                        ))
+                    })</ContentData>
+                  }
                 </ContentLabel>
                 {!content.tooltip ? null : (
                   <TooltipContainer>

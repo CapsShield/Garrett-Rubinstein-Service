@@ -7,7 +7,7 @@ import allFilters from '../allFilters.js';
 const FilterBar = (props) => {
   return (
     <FilterContainer>
-      <FilterDropdown title="review type" content={allFilters.reviewType}/>
+      <FilterDropdown title="review type" content={allFilters.reviewType} positive={props.positive} allReviews={props.allReviews}/>
       <FilterDropdown title="purchase type" content={allFilters.purchaseType}/>
       <FilterDropdown title="language" content={allFilters.language}/>
       <FilterDropdown title="date range" content={allFilters.dateRange}/>
