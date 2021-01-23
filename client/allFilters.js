@@ -40,7 +40,8 @@ const allFilters = {
       id: 'purchase-type-other',
       value: 'other',
       label: 'Other',
-      tooltip: 'These are reviews written by customers that did not purchase the game on Vapor. (This may include legitimate sources such as other digital stores, retail stores, testing purposes, or press review purposes. Or, from inappropriate sources such as copies given in exchange for reviews.)'
+      tooltip: 'These are reviews written by customers that did not purchase the game on Vapor. (This may include legitimate sources such as other digital stores, retail stores, testing purposes, or press review purposes. Or, from inappropriate sources such as copies given in exchange for reviews.)',
+      activeLabel: 'Not purchased on Vapor'
     }
   ],
   language: [
@@ -91,23 +92,23 @@ const allFilters = {
       id: 'playtime-over-1-hr',
       value: 'over-1-hr',
       label: 'Over 1 hour',
-      activePrepend: 'Playtime: '
+      activeLabel: 'Playtime: Over 1 hour'
     },
     {
       id: 'playtime-over-10-hrs',
       value: 'over-10-hrs',
       label: 'Over 10 hours',
-      activePrepend: 'Playtime: '
+      activeLabel: 'Playtime: Over 10 hours'
     },
     {
       id: 'playtime-over-100-hrs',
       value: 'over-100-hrs',
       label: 'Over 100 hours',
-      activePrepend: 'Playtime: '
+      activeLabel: 'Playtime: Over 100 hours'
     },
     { id: 'playtime-range',
       value: 'range',
-      activePrepend: 'Playtime: ',
+      activeLabel: 'Playtime: ',
       hideDropdown: true
     }
   ]
