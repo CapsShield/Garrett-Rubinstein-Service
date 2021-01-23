@@ -8,8 +8,7 @@ for (var i = 0; i < users.length; i++) {
   for (var j = 0; j < reviewedGames.length; j++) {
     seeds.push({
       userId: users[i].id,
-      gameId: reviewedGames[j].id,
-      purchasedOnSteam: faker.random.number(100) < 90 ? true : false
+      gameId: reviewedGames[j].id
     });
   }
 }

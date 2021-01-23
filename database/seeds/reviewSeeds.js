@@ -30,7 +30,8 @@ for (var i = 0; i < usersGames.length; i++) {
       min: 1,
       max: 10
     }), '\n\r\n'),
-    positive: faker.random.number(100) < positiveChance ? true : false
+    positive: faker.random.number(100) < positiveChance ? true : false,
+    purchasedOnSteam: faker.random.number(100) < 90 ? true : false
   });
 }
 
