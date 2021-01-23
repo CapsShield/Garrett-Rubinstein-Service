@@ -5,8 +5,14 @@ const FilterDropdown = (props) => {
   const [selected, setSelected] = useState(props.content.find(option => option.default === true).value);
   const changeHandler = (e) => {
     setSelected(e.target.value);
-    console.log(e.target.getAttribute('data-index'));
-    console.log(e.target.getAttribute('data-type'));
+    const filterType = e.target.getAttribute('data-type');
+    const filter = props.content[e.target.getAttribute('data-index')];
+    console.log(filterType);
+    console.log(filter);
+    props.setFilters((filters) => {
+      filters[filterType] = filter;
+      return filters;
+    });
   };
   return (
     <DropdownMenu>

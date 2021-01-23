@@ -7,11 +7,11 @@ import allFilters from '../allFilters.js';
 const FilterBar = (props) => {
   return (
     <FilterContainer>
-      <FilterDropdown type="reviewType" title="review type" content={allFilters.reviewType} positive={props.positive} allReviews={props.allReviews}/>
-      <FilterDropdown type="purchaseType" title="purchase type" content={allFilters.purchaseType}/>
-      <FilterDropdown type="language" title="language" content={allFilters.language}/>
-      <FilterDropdown type="dateRange" title="date range" content={allFilters.dateRange}/>
-      <FilterDropdown type="playtime" title="playtime" content={allFilters.playtime}/>
+      <FilterDropdown type="reviewType" title="review type" content={allFilters.reviewType} positive={props.positive} allReviews={props.allReviews} setFilters={props.setFilters}/>
+      <FilterDropdown type="purchaseType" title="purchase type" content={allFilters.purchaseType} setFilters={props.setFilters}/>
+      <FilterDropdown type="language" title="language" content={allFilters.language} setFilters={props.setFilters}/>
+      <FilterDropdown type="dateRange" title="date range" content={allFilters.dateRange} setFilters={props.setFilters}/>
+      <FilterDropdown type="playtime" title="playtime" content={allFilters.playtime} setFilters={props.setFilters}/>
       <DisplaySelector />
       <ShowGraph>
         <ShowGraphTitle>Show graph</ShowGraphTitle>
