@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const {getGameRecentReviews, getCounts} = require('../database/queries.js');
+const parseFilters = require('./utils/parseFilters.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -8,7 +9,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/api/games/:id/reviews/:page/:filters', (req, res) => {
-  getGameRecentReviews(req.params.id, req.params.page, (err, reviews) => {
+  var filters = parseFilters(JSON.parse(req.params.filters));
+  console.log(filters);
+  getGameRecentReviews(req.params.id, req.params.page, filters, (err, reviews) => {
     if (err) {
       res.status(500).send(err);
     } else {

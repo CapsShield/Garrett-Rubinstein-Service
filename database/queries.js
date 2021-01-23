@@ -3,29 +3,12 @@ const { User, Game, Language, Review, UsersGames } = require('./models/index.js'
 const moment = require('moment');
 const { Op } = require('sequelize');
 
-const getGameRecentReviews = (gameId, pageNum = 0, cb) => {
-  /*const where = {
-    review: { gameId: gameId },
-
-  };*/
+const getGameRecentReviews = (gameId, pageNum = 0, filters, cb) => {
+  const whereFilters = Object.assign({ gameId: gameId }, filters);
 
   Review.findAndCountAll({
-    where: {
-      gameId: gameId
-    },
-    include: [
-      {
-        model: Language,
-        where: {}
-      },
-      {
-        model: User,
-        include: {
-          model: Game,
-          where: { id: gameId }
-        }
-      }
-    ],
+    where: whereFilters,
+    include: [Language, User],
     order: [
       ['createdAt', 'DESC']
     ],
