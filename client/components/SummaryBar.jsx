@@ -64,7 +64,6 @@ const TooltipText = styled.div`
   position: absolute;
   bottom: 160%;
   width: 285px;
-  height: 35px;
   color: rgb(52, 52, 54);
   font-size: 11px;
   padding: 3px 5px;
