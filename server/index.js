@@ -48,6 +48,20 @@ app.get('/api/games/:id/summary', (req, res) => {
   });
 });
 
+app.get('/api/games/:id/summary/filterOnly', (req, res) => {
+  console.log(req.query);
+  var summaries = {};
+  var filters = parseFilters(req.query);
+  getCounts(req.params.id, false, filters, (err, counts) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      summaries.filtered = counts;
+      res.send(summaries);
+    }
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
