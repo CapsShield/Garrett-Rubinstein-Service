@@ -10,7 +10,7 @@ const Review = db.define('review', {
   hoursWhenReviewed: Sequelize.DECIMAL(10, 1),
   createdAt: Sequelize.DATE,
   positive: Sequelize.BOOLEAN,
-  purchasedOnSteam: Sequelize.BOOLEAN
+  purchasedOnVapor: Sequelize.BOOLEAN
 }, {
   timestamps: false
 });

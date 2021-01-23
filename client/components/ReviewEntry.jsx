@@ -29,7 +29,7 @@ const ReviewEntry = ({ review }) => {
             </RecHours>
           </ReviewHeaderText>
           <ReviewSource className="review-source">
-            <img src={`assets/${review.purchasedOnSteam ? 'icon_review_steam' : 'icon_review_key'}.png`} />
+            <img src={`assets/${review.purchasedOnVapor ? 'icon_review_steam' : 'icon_review_key'}.png`} />
           </ReviewSource>
         </ReviewHeader>
         <PostedDate className="posted-date">{`posted: ${moment(new Date(review.createdAt)).format('MMMM D, YYYY')}`}</PostedDate>

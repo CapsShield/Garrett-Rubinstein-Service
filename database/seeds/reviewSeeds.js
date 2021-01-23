@@ -31,7 +31,7 @@ for (var i = 0; i < usersGames.length; i++) {
       max: 10
     }), '\n\r\n'),
     positive: faker.random.number(100) < positiveChance ? true : false,
-    purchasedOnSteam: faker.random.number(100) < 90 ? true : false
+    purchasedOnVapor: faker.random.number(100) < 90 ? true : false
   });
 }
 
