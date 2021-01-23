@@ -49,7 +49,7 @@ const App = (props) => {
   }, []);
 
   const changePage = (newPage) => {
-    fetch(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}/${JSON.stringify(filters)}`)
+    fetch(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}/${JSON.stringify(getApiFilters())}`)
       .then(response => response.json())
       .then(parsed => {
         setReviews(parsed.rows);
