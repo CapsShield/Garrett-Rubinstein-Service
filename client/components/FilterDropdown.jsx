@@ -11,7 +11,7 @@ const FilterDropdown = (props) => {
     console.log(filter);
     props.setFilters((filters) => {
       filters[filterType] = filter;
-      return filters;
+      return Object.assign({}, filters); //ensure it's a new object reference to force a re-render with  state update
     });
   };
   return (
