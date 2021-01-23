@@ -50,13 +50,7 @@ const App = (props) => {
       .catch(err => console.error(err));
   };
 
-  useEffect(() => {
-    //fetch page 0 of reviews
-    fetchFirstPage(parsed => {
-      setReviews(parsed.rows);
-      setTotal(parsed.count);
-    });
-
+  const fetchSummary = () => {
     fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary`, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
@@ -65,8 +59,35 @@ const App = (props) => {
         setFilteredSummary(parsed.filtered);
       })
       .catch(err => console.error(err));
+  };
+
+  const fetchFilterSummary = () => {
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary/filterOnly`, getApiFilters()))
+      .then(response => response.json())
+      .then(parsed => {
+        setFilteredSummary(parsed.filtered);
+      })
+      .catch(err => console.error(err));
+  };
+
+  useEffect(() => {
+    //fetch page 0 of reviews
+    fetchFirstPage(parsed => {
+      setReviews(parsed.rows);
+      setTotal(parsed.count);
+    });
+
+    fetchSummary();
   }, []);
 
+  useEffect(() => {
+    fetchFirstPage(parsed => {
+      setReviews(parsed.rows);
+      setTotal(parsed.count);
+      setPage(1);
+    });
+    fetchFilterSummary();
+  }, [filters]);
 
 
   return (
