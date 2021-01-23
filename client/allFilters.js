@@ -107,7 +107,8 @@ const allFilters = {
     },
     { id: 'playtime-range',
       value: 'range',
-      activePrepend: 'Playtime: '
+      activePrepend: 'Playtime: ',
+      hideDropdown: true
     }
   ]
 };
