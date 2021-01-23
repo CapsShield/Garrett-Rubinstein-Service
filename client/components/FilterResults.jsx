@@ -34,13 +34,20 @@ const summary2score = (summary) => {
 
   return score;
 };
+const getPercent = (summary) => {
+  return Math.floor((summary[0] / summary[1]) * 100);
+};
 
 const FilterResults = (props) => {
+  var filterPercent = getPercent(props.filterSummary);
   var score = summary2score(props.filterSummary);
   return (
     <FilterResultsContainer>
       <FilterResultsText>
-        Showing <b>{props.filterSummary[1]}</b> reviews that match the filters above ( <FilterResultsScore score={score.category}>{score.text}</FilterResultsScore> )
+        Showing <b>{props.filterSummary[1]}</b> reviews that match the filters above ( <FilterResultsScore score={score.category}>
+          {score.text}
+          <TooltipText>{`${filterPercent}% of the ${props.filterSummary[1]} user reviews for this game are positive`}</TooltipText>
+        </FilterResultsScore> )
       </FilterResultsText>
     </FilterResultsContainer>
   );
@@ -51,10 +58,13 @@ const FilterResultsContainer = styled.div`
   padding-top: 10px;
   height: 32px;
 `;
-const FilterResultsText = styled.span`
+const FilterResultsText = styled.div`
   font-size: 15px;
+  display: inline-block;
 `;
-const FilterResultsScore = styled.span`
+const FilterResultsScore = styled.div`
+  display: inline-block;
+  position: relative;
   font-weight: bold;
   color: ${props => {
     if (props.score === 'positive') {
@@ -65,6 +75,25 @@ const FilterResultsScore = styled.span`
     }
     return '#c35c2c;';
   }}
+  cursor: help;
 `;
-
+const TooltipText = styled.div`
+  position: absolute;
+  bottom: 160%;
+  width: 285px;
+  color: rgb(52, 52, 54);
+  font-size: 11px;
+  padding: 3px 5px;
+  border: 1px #fff none;
+  border-radius: 3px;
+  background-color: rgb(194, 194, 194);
+  visibility: hidden;
+  box-shadow: 0 0 5px #000;
+  text-shadow: none;
+  font-weight: 300;
+  line-height: initial;
+  ${FilterResultsScore}:hover & {
+    visibility: visible;
+  }
+`;
 export default FilterResults;
