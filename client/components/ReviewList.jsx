@@ -17,7 +17,7 @@ const ReviewList = (props) => {
         <ReviewEntry review={review} key={review.id} />
       ))
     }
-    <PageChanger page={props.page} changePage={props.changePage} total={props.total} />
+    <PageChanger page={props.page} fetchPage={props.fetchPage} total={props.total} />
   </ReviewsContainer>;
 };
 

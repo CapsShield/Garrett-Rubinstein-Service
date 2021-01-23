@@ -2,20 +2,36 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const FilterDropdown = (props) => {
-  const [selected, setSelected] = useState(props.content ? props.content[props.default || 0].value : null);
-  const changeHandler = (e) => setSelected(e.target.value);
+  const changeHandler = (e) => {
+    const filterType = e.target.getAttribute('data-type');
+    const filter = props.content[e.target.getAttribute('data-index')];
+    props.setFilters((filters) => {
+      filters[filterType] = filter;
+      return Object.assign({}, filters); //ensure it's a new object reference to force a re-render with  state update
+    });
+  };
   return (
     <DropdownMenu>
       <DropdownTitle>{props.title}</DropdownTitle>
       <DropdownContentContainer>
         <DropdownContent>
-          {!props.content ? null : props.content.map(content => {
+          {!props.content ? null : props.content.map((content, i) => {
+            if (content.hideDropdown) {
+              return null;
+            }
             return (
               <ContentLine key={content.id}>
-                <input type="radio" id={content.id} value={content.value} checked={selected === content.value} onChange={changeHandler}/>
+                <input type="radio" id={content.id} value={content.value} checked={props.filters[props.type].value === content.value} onChange={changeHandler} data-index={i} data-type={props.type} disabled={content.disabled}/>
                 <ContentLabel htmlFor={content.id}>
                   {content.label}
-                  {content.data ? <ContentData>({content.data})</ContentData> : null}
+                  {!content.dataFromProps ? null :
+                    <ContentData>({
+                      !Array.isArray(content.dataFromProps) ? props[content.dataFromProps] :
+                        content.dataFunction(...(
+                          content.dataFromProps.map(prop => props[prop])
+                        ))
+                    })</ContentData>
+                  }
                 </ContentLabel>
                 {!content.tooltip ? null : (
                   <TooltipContainer>

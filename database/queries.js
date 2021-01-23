@@ -3,17 +3,12 @@ const { User, Game, Language, Review, UsersGames } = require('./models/index.js'
 const moment = require('moment');
 const { Op } = require('sequelize');
 
-const getGameRecentReviews = (gameId, pageNum = 0, cb) => {
+const getGameRecentReviews = (gameId, pageNum = 0, filters, cb) => {
+  const whereFilters = Object.assign({ gameId: gameId }, filters);
+
   Review.findAndCountAll({
-    where: {
-      gameId: gameId
-    },
-    include: [Language, {
-      model: User, include: {
-        model: Game,
-        where: {id: gameId}
-      }
-    }],
+    where: whereFilters,
+    include: [Language, User],
     order: [
       ['createdAt', 'DESC']
     ],
@@ -24,9 +19,9 @@ const getGameRecentReviews = (gameId, pageNum = 0, cb) => {
     .catch((err) => cb(err));
 };
 
-const getCounts = (gameId, recentOnly, cb) => {
+const getCounts = (gameId, recentOnly, filters, cb) => {
   var total = 0;
-  var where = {gameId: gameId};
+  var where = Object.assign({ gameId: gameId }, filters);
   if (recentOnly) {
     where.createdAt = {
       [Op.gte]: moment().subtract(30, 'days').toDate()
@@ -39,9 +34,11 @@ const getCounts = (gameId, recentOnly, cb) => {
     .then(count => {
       total = count;
     })
-    .then(() => Review.count({
-      where: wherePos
-    }))
+    .then(() => {
+      return filters.positive === false ? 0 : Review.count({
+        where: wherePos
+      });
+    })
     .then((posCount) => cb(null, [posCount, total]))
     .catch((err) => cb(err));
 };
