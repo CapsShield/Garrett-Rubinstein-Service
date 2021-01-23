@@ -18,6 +18,7 @@ const App = (props) => {
   var [page, setPage] = useState(1);
   var [total, setTotal] = useState(1);
   var [filters, setFilters] = useState(defaultFilters);
+  var [filteredSummary, setFilteredSummary] = useState([0, 1]);
 
   const getApiFilters = () => {
     return {
@@ -44,6 +45,7 @@ const App = (props) => {
       .then(parsed => {
         setOverallSummary(parsed.overall);
         setRecentSummary(parsed.recent);
+        setFilteredSummary(parsed.filtered);
       })
       .catch(err => console.error(err));
   }, []);
@@ -67,7 +69,7 @@ const App = (props) => {
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
           <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} />
-          <FilterInfo filters={filters} filterSummary={overallSummary}/>
+          <FilterInfo filters={filters} filterSummary={filteredSummary}/>
           <ReviewList reviews={reviews} page={page} changePage={changePage} total={total} />
         </AppContainer>
       </GridContainer>
