@@ -22,12 +22,12 @@ const parseOptions = (queryParams) => {
   } else if (queryParams.playtime === 'over-100-hrs') {
     reviewFilters.hoursWhenReviewed = {[Op.gte]: 100};
   }
-  if (queryParams.sort === 'recent') {
-    var sort = ['createdAt', 'DESC'];
-  } else if (queryParams.sort === 'helpful') {
+  if (queryParams.sort === 'helpful') {
     var sort = ['helpfulVotes', 'DESC'];
   } else if (queryParams.sort === 'funny') {
     var sort = ['funnyVotes', 'DESC'];
+  } else {
+    var sort = ['createdAt', 'DESC'];
   }
   return {
     filters: reviewFilters,
