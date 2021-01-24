@@ -4,10 +4,10 @@ import FilterDropdown from './FilterDropdown.jsx';
 import DisplaySelector from './DisplaySelector.jsx';
 import allFilters from '../allFilters.js';
 
-import CustomizeButton from './addOns/CustomizeButton.jsx';
-import DateRangeExplainer from './addOns/DateRangeExplainer.jsx';
-import PlaytimeHeader from './addOns/PlaytimeHeader.jsx';
-import TwoPointSlider from './TwoPointSlider.jsx';
+import CustomizeButton from './CustomizeButton.jsx';
+import DateRangeExplainer from './DateRangeExplainer.jsx';
+import PlaytimeHeader from './PlaytimeHeader.jsx';
+import PlaytimeSlider from './PlaytimeSlider.jsx';
 
 const FilterBar = (props) => {
   return (
@@ -16,7 +16,7 @@ const FilterBar = (props) => {
       <FilterDropdown type="purchaseType" title="purchase type" content={allFilters.purchaseType} filters={props.filters} setFilters={props.setFilters} vapor={props.vapor} allReviews={props.allReviews}/>
       <FilterDropdown type="language" title="language" content={allFilters.language} filters={props.filters} setFilters={props.setFilters} language={props.language} allReviews={props.allReviews} postContent={<CustomizeButton />}/>
       <FilterDropdown type="dateRange" title="date range" content={allFilters.dateRange} filters={props.filters} setFilters={props.setFilters} preContent={<DateRangeExplainer />}/>
-      <FilterDropdown type="playtime" title="playtime" content={allFilters.playtime} filters={props.filters} setFilters={props.setFilters} preContent={<PlaytimeHeader />} postContent={<TwoPointSlider/>}/>
+      <FilterDropdown type="playtime" title="playtime" content={allFilters.playtime} filters={props.filters} setFilters={props.setFilters} preContent={<PlaytimeHeader />} postContent={<PlaytimeSlider min={props.minPlaytime} setMin={props.setMinPlaytime} max={props.maxPlaytime} setMax={props.setMaxPlaytime}/>}/>
       <DisplaySelector sort={props.sort} setSort={props.setSort}/>
       <ShowGraph>
         <ShowGraphTitle>Show graph</ShowGraphTitle>
