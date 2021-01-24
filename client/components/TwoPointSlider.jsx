@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const TwoPointSlider = () => {
+const TwoPointSlider = ({min, setMin, max, setMax}) => {
   var [minActive, setMinActive] = useState(false);
   var [maxActive, setMaxActive] = useState(false);
-  var [min, setMin] = useState(0);
-  var [max, setMax] = useState(100);
 
   useEffect(() => {
     if (minActive === true) {
@@ -37,13 +35,13 @@ const TwoPointSlider = () => {
 };
 
 const Container = styled.div`
-  width: 280px;
+  width: 285px;
   height: 24px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   background: #c6d4df;
-  margin: 0px 10px;
+  margin-left: 7px;
 `;
 const Track = styled.div.attrs(props => ({
   style: {
