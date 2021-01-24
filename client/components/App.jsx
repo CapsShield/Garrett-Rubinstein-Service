@@ -25,6 +25,8 @@ const App = (props) => {
     language: 0
   });
   var [sort, setSort] = useState('recent');
+  var [minPlaytime, setMinPlaytime] = useState(0);
+  var [maxPlaytime, setMaxPlaytime] = useState(100);
 
   const fetchInitialCounts = () => {
     fetch(`/api/games/${props.gameId || 1}/filterCounts`)
@@ -48,7 +50,14 @@ const App = (props) => {
     };
   };
 
-  const addQueryParams = (url, sort, params) => url + `?sort=${sort}` + Object.keys(params).map((paramKey, i) => `&${paramKey}=${params[paramKey]}`).join('');
+  const addQueryParams = (url, sort, params) => {
+    var built = url + `?sort=${sort}` + Object.keys(params).map((paramKey, i) => `&${paramKey}=${params[paramKey]}`).join('');
+    if (params.playtime === 'range') {
+      built += minPlaytime > 0 ? `&rangeMin=${minPlaytime}` : '';
+      built += maxPlaytime < 100 ? `&rangeMax=${maxPlaytime}` : '';
+    }
+    return built;
+  };
 
   const fetchFirstPage = (cb = () => {}) => {
     fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/0`, sort, getApiFilters()))
@@ -127,7 +136,7 @@ const App = (props) => {
         <AppContainer>
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
-          <FilterBar positive={initialCounts.positive} vapor={initialCounts.vapor} language={initialCounts.language} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort}/>
+          <FilterBar positive={initialCounts.positive} vapor={initialCounts.vapor} language={initialCounts.language} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort} minPlaytime={minPlaytime} setMinPlaytime={setMinPlaytime} maxPlaytime={maxPlaytime} setMaxPlaytime={setMaxPlaytime}/>
           <FilterInfo filters={filters} setFilters={setFilters} filterSummary={filteredSummary}/>
           <ReviewList reviews={reviews} page={page} fetchPage={fetchPage} total={total} />
         </AppContainer>
