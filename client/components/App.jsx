@@ -149,7 +149,7 @@ const App = (props) => {
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
           <FilterBar positive={initialCounts.positive} vapor={initialCounts.vapor} language={initialCounts.language} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort} minPlaytime={minPlaytime} setMinPlaytime={setMinPlaytime} maxPlaytime={maxPlaytime} setMaxPlaytime={setMaxPlaytime}/>
-          <FilterInfo filters={filters} setFilters={setFilters} filterSummary={filteredSummary}/>
+          <FilterInfo filters={filters} setFilters={setFilters} filterSummary={filteredSummary} minPlaytime={minPlaytime} maxPlaytime={maxPlaytime}/>
           <ReviewList reviews={reviews} page={page} fetchPage={fetchPage} total={total} />
         </AppContainer>
       </GridContainer>

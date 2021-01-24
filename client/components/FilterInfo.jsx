@@ -9,7 +9,7 @@ const FilterInfo = (props) => {
       {Object.keys(props.filters)
         .map(type => props.filters[type])
         .filter(filter => !filter.hideActive)
-        .length === 0 ? null : <ActiveFilters filters={props.filters} setFilters={props.setFilters}/>
+        .length === 0 ? null : <ActiveFilters filters={props.filters} setFilters={props.setFilters} minPlaytime={props.minPlaytime} maxPlaytime={props.maxPlaytime}/>
       }
       {props.filters.reviewType.value !== 'all' ? null : <FilterResults filterSummary={props.filterSummary}/>}
     </FilterInfoContainer>

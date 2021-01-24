@@ -23,11 +23,11 @@ const TwoPointSlider = ({min, setMin, max, setMax, changeHandler}) => {
       <Track min={min} max={max} />
       <Slider type="range" id="slider-max" value={max} onChange={(e) => {
         setMaxActive(true);
-        setMax(+Number(e.target.value) < min ? min : e.target.value);
+        setMax(Number(e.target.value) < min ? min : Number(e.target.value));
       }} onMouseUp={() => setMaxActive(false)} />
       <Slider type="range" id="slider-min" value={min} onChange={(e) => {
         setMinActive(true);
-        setMin(+Number(e.target.value) > max ? max : e.target.value);
+        setMin(Number(e.target.value) > max ? max : Number(e.target.value));
       }} onMouseUp={() => setMinActive(false)} />
     </Container>
   );

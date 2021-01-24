@@ -109,8 +109,16 @@ const allFilters = {
     {
       id: 'playtime-range',
       value: 'range',
-      activeLabel: 'Playtime: ',
-      hideDropdown: true
+      activeLabelArgsProps: ['minPlaytime', 'maxPlaytime'],
+      hideDropdown: true,
+      activeLabelFunction: (min, max) => {
+        var label = '';
+        if (max === 100) {
+          return `Playtime: Over ${min} hour${min !== 1 ? 's' : ''}`;
+        } else {
+          return `Playtime: ${min} hour${min !== 1 ? 's' : ''} to ${max} hour${max > 1 ? 's' : ''}`;
+        }
+      }
     }
   ]
 };

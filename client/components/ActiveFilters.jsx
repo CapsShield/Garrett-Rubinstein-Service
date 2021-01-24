@@ -7,9 +7,9 @@ for (var key in allFilters) {
   openFilters[key] = allFilters[key].filter(type => type.hideActive === true)[0];
 }
 
-const ActiveFilters = ({ filters, setFilters }) => {
+const ActiveFilters = (props) => {
   const revertFilter = (filterType) => {
-    setFilters(filters => {
+    props.setFilters(filters => {
       filters[filterType] = openFilters[filterType];
       return Object.assign({}, filters);
     });
@@ -21,10 +21,10 @@ const ActiveFilters = ({ filters, setFilters }) => {
   return (
     <ActiveFilterContainer>
       <ActiveFilterTitle>Filters</ActiveFilterTitle>
-      {Object.keys(filters).map(filterType => {
-        const filter = filters[filterType];
+      {Object.keys(props.filters).map(filterType => {
+        const filter = props.filters[filterType];
         return filter.hideActive ? null : (<FilterBox key={filter.id} data-type={filterType} onClick={handleClick}>
-          {filter.activeLabel ? filter.activeLabel : filter.label}
+          {filter.activeLabelFunction ? filter.activeLabelFunction(...(filter.activeLabelArgsProps.map(prop => props[prop]))) : (filter.activeLabel ? filter.activeLabel : filter.label)}
         </FilterBox>);
       })}
     </ActiveFilterContainer>
