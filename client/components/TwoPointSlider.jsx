@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const TwoPointSlider = ({min, setMin, max, setMax}) => {
+const TwoPointSlider = ({min, setMin, max, setMax, changeHandler}) => {
   var [minActive, setMinActive] = useState(false);
   var [maxActive, setMaxActive] = useState(false);
 
@@ -9,13 +9,13 @@ const TwoPointSlider = ({min, setMin, max, setMax}) => {
     if (minActive === true) {
       return;
     }
-    console.log('new min: ', min);
+    changeHandler();
   }, [minActive]);
   useEffect(() => {
     if (maxActive === true) {
       return;
     }
-    console.log('new max: ', max);
+    changeHandler();
   }, [maxActive]);
 
   return (
