@@ -106,7 +106,8 @@ const allFilters = {
       label: 'Over 10 hours',
       activeLabel: 'Playtime: Over 10 hours'
     },
-    { id: 'playtime-range',
+    {
+      id: 'playtime-range',
       value: 'range',
       activeLabel: 'Playtime: ',
       hideDropdown: true
