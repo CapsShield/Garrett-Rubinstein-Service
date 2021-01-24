@@ -24,6 +24,7 @@ const App = (props) => {
     vapor: 0,
     language: 0
   });
+  var [sort, setSort] = useState('recent');
 
   const fetchInitialCounts = () => {
     fetch(`/api/games/${props.gameId || 1}/filterCounts`)
@@ -47,17 +48,17 @@ const App = (props) => {
     };
   };
 
-  const addQueryParams = (url, params) => url + Object.keys(params).map((paramKey, i) => `${i === 0 ? '?' : '&' }${paramKey}=${params[paramKey]}`).join('');
+  const addQueryParams = (url, sort, params) => url + `?sort=${sort}` + Object.keys(params).map((paramKey, i) => `&${paramKey}=${params[paramKey]}`).join('');
 
   const fetchFirstPage = (cb = () => {}) => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/0`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/0`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => cb(parsed))
       .catch(err => console.error(err));
   };
 
   const fetchPage = (newPage) => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setReviews(parsed.rows);
@@ -68,7 +69,7 @@ const App = (props) => {
   };
 
   const fetchSummary = () => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setOverallSummary(parsed.overall);
@@ -79,7 +80,7 @@ const App = (props) => {
   };
 
   const fetchFilterSummary = () => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary/filterOnly`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary/filterOnly`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setFilteredSummary(parsed.filtered);
