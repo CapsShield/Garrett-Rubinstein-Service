@@ -115,6 +115,10 @@ const App = (props) => {
     fetchFilterSummary();
   }, [filters]);
 
+  useEffect(() => {
+    fetchForSort();
+  }, [sort]);
+
 
   return (
     <div>
