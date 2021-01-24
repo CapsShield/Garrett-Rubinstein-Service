@@ -116,6 +116,18 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
+    var {value} = filters.playtime;
+    if (value === 'no-min') {
+      setMinPlaytime(0);
+      setMaxPlaytime(100);
+    } else if (value === 'over-1-hr') {
+      setMinPlaytime(1);
+      setMaxPlaytime(100);
+    } else if (value === 'over-10-hrs') {
+      setMinPlaytime(10);
+      setMaxPlaytime(100);
+    }
+
     fetchFirstPage(parsed => {
       setReviews(parsed.rows);
       setTotal(parsed.count);
