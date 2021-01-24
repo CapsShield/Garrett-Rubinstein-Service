@@ -88,6 +88,13 @@ const App = (props) => {
       .catch(err => console.error(err));
   };
 
+  const fetchForSort = () => {
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${page - 1}`, sort, getApiFilters()))
+      .then(response => response.json())
+      .then(parsed => setReviews(parsed.rows))
+      .catch(err => console.error(err));
+  };
+
   useEffect(() => {
     fetchFirstPage(parsed => {
       setReviews(parsed.rows);
@@ -116,7 +123,7 @@ const App = (props) => {
         <AppContainer>
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
-          <FilterBar positive={initialCounts.positive} vapor={initialCounts.vapor} language={initialCounts.language} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters}/>
+          <FilterBar positive={initialCounts.positive} vapor={initialCounts.vapor} language={initialCounts.language} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort}/>
           <FilterInfo filters={filters} setFilters={setFilters} filterSummary={filteredSummary}/>
           <ReviewList reviews={reviews} page={page} fetchPage={fetchPage} total={total} />
         </AppContainer>
