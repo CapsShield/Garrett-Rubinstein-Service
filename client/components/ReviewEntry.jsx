@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 const moment = require('moment');
 
 const ReviewEntry = ({ review }) => {
+  const [collapsed, setCollapsed] = useState(review.reviewText.length > 660);
+
   return (
     <ReviewEntryContainer className="review-entry">
       <GradientTopBorder className="gradient-top-border" />
@@ -33,10 +35,11 @@ const ReviewEntry = ({ review }) => {
           </ReviewSource>
         </ReviewHeader>
         <PostedDate className="posted-date">{`posted: ${moment(new Date(review.createdAt)).format('MMMM D, YYYY')}`}</PostedDate>
-        <ReviewContent className="review-content">
+        <ReviewContent className="review-content" collapsed={collapsed}>
           {review.reviewText}
+          {collapsed ? <CollapsedGradient/> : null}
         </ReviewContent>
-        <ReviewContentEnd className="review-content-end"></ReviewContentEnd>
+        {collapsed ? <Expander><ExpanderText onClick={() => setCollapsed(false)}>read more</ExpanderText></Expander> : <ReviewContentEnd className="review-content-end"></ReviewContentEnd>}
         <VoteControls className="vote-controls">
           <VotePrompt className="vote-prompt">Was this review helpful?</VotePrompt>
           <VoteButtonContainer className="vote-btn-ctn">
@@ -205,10 +208,38 @@ const ReviewContent = styled.div`
   color: #acb2b8;
   overflow-wrap: break-word;
   white-space: pre-line;
+  overflow-y: hidden;
+  height: ${props => props.collapsed ? '225px;' : 'auto;'}
+  position: relative;
+`;
+const CollapsedGradient = styled.div`
+  height: 30px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient( to bottom, rgba( 22,32,45,0) 5%, rgba( 22,32,45,.95) 95%);
+  z-index: 5;
+`;
+const Expander = styled.div`
+  border-bottom: 1px #363f4c solid;
+  height: 30px;
+  padding-top: 10px;
+  padding-bottom: 8px;
+  color: #67c1f5;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1px;
+`;
+const ExpanderText = styled.div`
+  font-size: 10px;
+  margin-right: 18px;
+  cursor: pointer;
 `;
 const ReviewContentEnd = styled.div`
   height: 12px;
   border-bottom: 1px #363f4c solid;
+  margin-right: 1px;
 `;
 const VoteControls = styled.div`
   margin: 8px 0px;
