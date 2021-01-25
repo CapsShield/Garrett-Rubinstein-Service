@@ -4,7 +4,7 @@ const {getGameReviews, getCounts, getFilterTotal} = require('../database/queries
 const parseOptions = require('./utils/parseOptions.js');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
