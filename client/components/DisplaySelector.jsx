@@ -5,7 +5,7 @@ const DisplaySelector = (props) => {
   return (
     <SelectorContainer>
       <span>Display as:</span>
-      <Selector defaultValue="recent">
+      <Selector value={props.sort} onChange={(e) => props.setSort(e.target.value)}>
         <option value="summary">Summary</option>
         <option value="helpful">Most Helpful</option>
         <option value="recent">Recent</option>

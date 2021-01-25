@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-const {getGameRecentReviews, getCounts} = require('../database/queries.js');
-const parseFilters = require('./utils/parseFilters.js');
+const {getGameReviews, getCounts, getFilterTotal} = require('../database/queries.js');
+const parseOptions = require('./utils/parseOptions.js');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,8 +9,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.get('/api/games/:id/reviews/:page', (req, res) => {
-  var filters = parseFilters(req.query);
-  getGameRecentReviews(req.params.id, req.params.page, filters, (err, reviews) => {
+  if (!req.query.sort) {
+    req.query.sort = 'recent';
+  }
+  var {filters, sort} = parseOptions(req.query);
+  getGameReviews(req.params.id, req.params.page, filters, sort, (err, reviews) => {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -21,7 +24,7 @@ app.get('/api/games/:id/reviews/:page', (req, res) => {
 
 app.get('/api/games/:id/summary', (req, res) => {
   var summaries = {};
-  var filters = parseFilters(req.query);
+  var {filters} = parseOptions(req.query);
   getCounts(req.params.id, false, {}, (err, counts) => {
     if (err) {
       res.status(500).send(err);
@@ -48,7 +51,7 @@ app.get('/api/games/:id/summary', (req, res) => {
 
 app.get('/api/games/:id/summary/filterOnly', (req, res) => {
   var summaries = {};
-  var filters = parseFilters(req.query);
+  var {filters} = parseOptions(req.query);
   getCounts(req.params.id, false, filters, (err, counts) => {
     if (err) {
       res.status(500).send(err);
@@ -57,6 +60,18 @@ app.get('/api/games/:id/summary/filterOnly', (req, res) => {
       res.send(summaries);
     }
   });
+});
+
+app.get('/api/games/:id/filterCounts', (req, res) => {
+  const counts = {};
+  getFilterTotal(req.params.id, {positive: true})
+    .then((total) => counts.positive = total)
+    .then(() => getFilterTotal(req.params.id, {purchasedOnVapor: true}))
+    .then((total) => counts.vapor = total)
+    .then(() => getFilterTotal(req.params.id, {languageId: 1}))
+    .then((total) => counts.language = total)
+    .then(() => res.send(counts))
+    .catch(err => res.status(500).send(err));
 });
 
 app.listen(PORT, () => {

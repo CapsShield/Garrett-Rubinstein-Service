@@ -19,7 +19,25 @@ const App = (props) => {
   var [total, setTotal] = useState(1);
   var [filters, setFilters] = useState(defaultFilters);
   var [filteredSummary, setFilteredSummary] = useState([0, 1]);
+  var [initialCounts, setInitialCounts] = useState({
+    positive: 0,
+    vapor: 0,
+    language: 0
+  });
+  var [sort, setSort] = useState('recent');
 
+  const fetchInitialCounts = () => {
+    fetch(`/api/games/${props.gameId || 1}/filterCounts`)
+      .then(response => response.json())
+      .then(parsed => {
+        setInitialCounts({
+          positive: parsed.positive,
+          vapor: parsed.vapor,
+          language: parsed.language
+        });
+      })
+      .catch(err => console.error(err));
+  };
   const getApiFilters = () => {
     return {
       reviewType: filters.reviewType.value,
@@ -30,17 +48,17 @@ const App = (props) => {
     };
   };
 
-  const addQueryParams = (url, params) => url + Object.keys(params).map((paramKey, i) => `${i === 0 ? '?' : '&' }${paramKey}=${params[paramKey]}`).join('');
+  const addQueryParams = (url, sort, params) => url + `?sort=${sort}` + Object.keys(params).map((paramKey, i) => `&${paramKey}=${params[paramKey]}`).join('');
 
   const fetchFirstPage = (cb = () => {}) => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/0`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/0`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => cb(parsed))
       .catch(err => console.error(err));
   };
 
   const fetchPage = (newPage) => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setReviews(parsed.rows);
@@ -51,7 +69,7 @@ const App = (props) => {
   };
 
   const fetchSummary = () => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setOverallSummary(parsed.overall);
@@ -62,7 +80,7 @@ const App = (props) => {
   };
 
   const fetchFilterSummary = () => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary/filterOnly`, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary/filterOnly`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setFilteredSummary(parsed.filtered);
@@ -70,14 +88,22 @@ const App = (props) => {
       .catch(err => console.error(err));
   };
 
+  const fetchForSort = () => {
+    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${page - 1}`, sort, getApiFilters()))
+      .then(response => response.json())
+      .then(parsed => setReviews(parsed.rows))
+      .catch(err => console.error(err));
+  };
+
   useEffect(() => {
-    //fetch page 0 of reviews
     fetchFirstPage(parsed => {
       setReviews(parsed.rows);
       setTotal(parsed.count);
     });
 
     fetchSummary();
+
+    fetchInitialCounts();
   }, []);
 
   useEffect(() => {
@@ -89,6 +115,10 @@ const App = (props) => {
     fetchFilterSummary();
   }, [filters]);
 
+  useEffect(() => {
+    fetchForSort();
+  }, [sort]);
+
 
   return (
     <div>
@@ -97,7 +127,7 @@ const App = (props) => {
         <AppContainer>
           <AppHeader>customer reviews</AppHeader>
           <SummaryBar overallSummary={overallSummary} recentSummary={recentSummary} />
-          <FilterBar positive={overallSummary[0]} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters}/>
+          <FilterBar positive={initialCounts.positive} vapor={initialCounts.vapor} language={initialCounts.language} allReviews={overallSummary[1]} filters={filters} setFilters={setFilters} sort={sort} setSort={setSort}/>
           <FilterInfo filters={filters} setFilters={setFilters} filterSummary={filteredSummary}/>
           <ReviewList reviews={reviews} page={page} fetchPage={fetchPage} total={total} />
         </AppContainer>
