@@ -15,12 +15,18 @@ const parseOptions = (queryParams) => {
   if (queryParams.language === 'user') {
     reviewFilters.languageId = '1';
   }
-  if (queryParams.playtime === 'over-1-hr') {
+  if (queryParams.playtime === 'range') {
+    reviewFilters.hoursWhenReviewed = {};
+    if (queryParams.rangeMin) {
+      reviewFilters.hoursWhenReviewed[Op.gte] = queryParams.rangeMin;
+    }
+    if (queryParams.rangeMax) {
+      reviewFilters.hoursWhenReviewed[Op.lte] = queryParams.rangeMax;
+    }
+  } else if (queryParams.playtime === 'over-1-hr') {
     reviewFilters.hoursWhenReviewed = {[Op.gte]: 1};
   } else if (queryParams.playtime === 'over-10-hrs') {
     reviewFilters.hoursWhenReviewed = {[Op.gte]: 10};
-  } else if (queryParams.playtime === 'over-100-hrs') {
-    reviewFilters.hoursWhenReviewed = {[Op.gte]: 100};
   }
   if (queryParams.sort === 'helpful') {
     var sort = ['helpfulVotes', 'DESC'];

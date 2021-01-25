@@ -107,15 +107,18 @@ const allFilters = {
       activeLabel: 'Playtime: Over 10 hours'
     },
     {
-      id: 'playtime-over-100-hrs',
-      value: 'over-100-hrs',
-      label: 'Over 100 hours',
-      activeLabel: 'Playtime: Over 100 hours'
-    },
-    { id: 'playtime-range',
+      id: 'playtime-range',
       value: 'range',
-      activeLabel: 'Playtime: ',
-      hideDropdown: true
+      activeLabelArgsProps: ['minPlaytime', 'maxPlaytime'],
+      hideDropdown: true,
+      activeLabelFunction: (min, max) => {
+        var label = '';
+        if (max === 100) {
+          return `Playtime: Over ${min} hour${min !== 1 ? 's' : ''}`;
+        } else {
+          return `Playtime: ${min} hour${min !== 1 ? 's' : ''} to ${max} hour${max > 1 ? 's' : ''}`;
+        }
+      }
     }
   ]
 };
