@@ -2,6 +2,15 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 const moment = require('moment');
 
+import thumbUp from '../assets/thumbUp.png';
+import thumbDown from '../assets/thumbDown.png';
+import vaporPurchase from '../assets/icon_review_steam.png';
+import otherPurchase from '../assets/icon_review_key.png';
+import gradientBorder from '../assets/maincol_gradient_rule.png';
+import icons from '../assets/icons_16.png';
+import awardIcon from '../assets/award_icon.svg';
+
+
 const ReviewEntry = ({ review }) => {
   const [collapsed, setCollapsed] = useState(review.reviewText.length > 660);
 
@@ -21,7 +30,7 @@ const ReviewEntry = ({ review }) => {
       <ReviewInfo className="review-info">
         <ReviewHeader className="review-header">
           <RecThumb className="rec-thumb">
-            <img src={`assets/${review.positive ? 'thumbUp' : 'thumbDown'}.png`} />
+            <img src={review.positive ? thumbUp : thumbDown} />
           </RecThumb>
           <ReviewHeaderText className="review-header-text">
             <RecText className="rec-text">{review.positive ? 'Recommended' : 'Not Recommended'}</RecText>
@@ -31,7 +40,7 @@ const ReviewEntry = ({ review }) => {
             </RecHours>
           </ReviewHeaderText>
           <ReviewSource className="review-source">
-            <img src={`assets/${review.purchasedOnVapor ? 'icon_review_steam' : 'icon_review_key'}.png`} />
+            <img src={review.purchasedOnVapor ? vaporPurchase : otherPurchase} />
           </ReviewSource>
         </ReviewHeader>
         <PostedDate className="posted-date">{`posted: ${moment(new Date(review.createdAt)).format('MMMM D, YYYY')}`}</PostedDate>
@@ -56,7 +65,7 @@ const ReviewEntry = ({ review }) => {
               <VoteButtonText className="vote-btn-text">Funny</VoteButtonText>
             </VoteButton>
             <VoteButton className="vote-btn vote-btn-award">
-              <IconAward className="icon-award" src="assets/award_icon.svg"></IconAward>
+              <IconAward className="icon-award" src={awardIcon}></IconAward>
               <VoteButtonText className="vote-btn-text">Award</VoteButtonText>
             </VoteButton>
           </VoteButtonContainer>
@@ -82,7 +91,7 @@ const GradientTopBorder = styled.div`
   height: 1px;
   grid-row: 1;
   grid-column: 1 / span 2;
-  background-image: url("assets/maincol_gradient_rule.png");
+  background-image: url(${gradientBorder});
 `;
 const ReviewUserInfo = styled.div`
   grid-column: 1;
@@ -280,7 +289,7 @@ const VoteButtonText = styled.span`
 const Icon16 = styled.i`
   height: 16px;
   width: 16px;
-  background-image: url("assets/icons_16.png");
+  background-image: url(${icons});
   background-clip: border-box;
 `;
 const IconHelpful = styled(Icon16)`

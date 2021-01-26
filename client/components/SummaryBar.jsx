@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import questionMark from '../assets/icon_questionmark.png';
 
 const SummaryContainer = styled.div`
   background-color: #2a475e;
@@ -56,7 +57,7 @@ const SummaryTooltip = styled.div`
   height: 14px;
   width: 12px;
   margin-left: 2px;
-  background-image: url('assets/icon_questionmark.png');
+  background-image: url(${questionMark});
   background-repeat: no-repeat;
   position: relative;
 `;

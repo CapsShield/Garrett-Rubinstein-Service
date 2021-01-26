@@ -9,6 +9,8 @@ import DateRangeExplainer from './DateRangeExplainer.jsx';
 import PlaytimeHeader from './PlaytimeHeader.jsx';
 import PlaytimeSlider from './PlaytimeSlider.jsx';
 
+import graphExpander from '../assets/review_graph_expander.png';
+
 const FilterBar = (props) => {
   return (
     <FilterContainer>
@@ -59,7 +61,7 @@ const ExpandGraphIcon = styled.div`
   height: 16px;
   margin-right: 7px;
   margin-top: 4px;
-  background-image: url(assets/review_graph_expander.png);
+  background-image: url(${graphExpander});
   background-position: 0px -12px;
   background-repeat: no-repeat;
   background-size: 14px 26px;

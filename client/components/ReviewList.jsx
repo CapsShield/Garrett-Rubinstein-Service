@@ -2,6 +2,7 @@ import React from 'react';
 import ReviewEntry from './ReviewEntry.jsx';
 import styled from 'styled-components';
 import PageChanger from './PageChanger.jsx';
+import gradientBorder from '../assets/maincol_gradient_rule.png';
 
 const ReviewList = (props) => {
   if (props.reviews.length === 0) {
@@ -28,7 +29,7 @@ const NoReviews = styled.div`
   width: 616px;
   height: 124px;
   background-color: rgba( 0, 0, 0, 0.2 );
-  background-image: url(assets/maincol_gradient_rule.png);
+  background-image: url(${gradientBorder});
   background-repeat: no-repeat;
   background-position: top left;
 `;
