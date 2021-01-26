@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import steamLabsLogo from '../assets/steam_labs_logo.svg';
 
 const PlaytimeHeader = () => {
   return (
     <HeaderContainer>
       <VaporLabs>
-        <VaporLabsImg src="assets/steam_labs_logo.svg"/>
+        <VaporLabsImg src={steamLabsLogo}/>
         <VaporLabsText>Brought to you by Vapor Labs</VaporLabsText>
       </VaporLabs>
       <HeaderText>Filter reviews by the user's playtime when the review was written:</HeaderText>

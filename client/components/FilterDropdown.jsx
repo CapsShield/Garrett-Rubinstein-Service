@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import arrowDown from '../assets/btn_arrow_down_padded.png';
+import arrowDownBlack from '../assets/btn_arrow_down_padded_black.png';
+import questionMark from '../assets/icon_questionmark_dark.png';
 
 const FilterDropdown = (props) => {
   const changeHandler = (e) => {
@@ -61,14 +64,14 @@ const DropdownMenu = styled.div`
   }
 `;
 const DropdownTitle = styled.div`
-  background-image: url(assets/btn_arrow_down_padded.png);
+  background-image: url(${arrowDown});
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: right;
   cursor: pointer;
   padding: 10px 20px 10px 10px;
   ${DropdownMenu}:hover & {
-    background-image: url(assets/btn_arrow_down_padded_black.png);
+    background-image: url(${arrowDownBlack});
   }
 `;
 const DropdownContentContainer = styled.div`
@@ -103,7 +106,7 @@ const TooltipContainer = styled.div`
   width: 12px;
   margin-left: 2px;
   margin-top: 1px;
-  background-image: url('assets/icon_questionmark_dark.png');
+  background-image: url(${questionMark});
   background-repeat: no-repeat;
   position: relative;
 `;

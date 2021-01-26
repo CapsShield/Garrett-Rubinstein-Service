@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import allFilters from '../allFilters.js';
+import deleteSearchTerm from '../assets/deleteSearchTerm.png';
 
 const openFilters = {};
 for (var key in allFilters) {
@@ -44,7 +45,7 @@ const FilterBox = styled.div`
   padding: 5px 25px 5px 5px;
   margin-right: 5px;
   border-radius: 2px;
-  background-image: url(assets/deleteSearchTerm.png);
+  background-image: url(${deleteSearchTerm});
   cursor: pointer;
   background-position: right 5px center;
   background-repeat: no-repeat;
