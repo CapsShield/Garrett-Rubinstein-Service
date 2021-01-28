@@ -1,3 +1,4 @@
+require('dotenv').config();
 const game = require('./seeds/gameSeeds.js');
 const lang = require('./seeds/langSeeds.js');
 const user = require('./seeds/userSeeds.js');
