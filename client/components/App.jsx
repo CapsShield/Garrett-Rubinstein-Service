@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import ReviewList from './Reviewlist.jsx';
+import ReviewList from './ReviewList.jsx';
 import SummaryBar from './SummaryBar.jsx';
 import FilterBar from './FilterBar.jsx';
 import FilterInfo from './FilterInfo.jsx';
