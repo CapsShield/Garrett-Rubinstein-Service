@@ -166,6 +166,23 @@ const GlobalStyle = createGlobalStyle`
     color: #c6d4df;
     font-family: Arial, sans-serif;
   }
+  ::-webkit-scrollbar {
+    width: 14px;
+    background: transparent;
+    overflow: visible;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: #434953;
+    border-radius: 10px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    transition: background-color .32s ease-in-out;
+    margin: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4E5157;
+  }
 `;
 const AppHeader = styled.div`
   text-transform: uppercase;
