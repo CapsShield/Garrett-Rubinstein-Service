@@ -28,8 +28,10 @@ const App = (props) => {
   var [minPlaytime, setMinPlaytime] = useState(0);
   var [maxPlaytime, setMaxPlaytime] = useState(100);
 
+  var gameId = ((props.gameId > 0) && (props.gameId < 101)) ? props.gameId : 1;
+
   const fetchInitialCounts = () => {
-    fetch(`/api/games/${props.gameId || 1}/filterCounts`)
+    fetch(`/api/games/${gameId}/filterCounts`)
       .then(response => response.json())
       .then(parsed => {
         setInitialCounts({
@@ -60,14 +62,14 @@ const App = (props) => {
   };
 
   const fetchFirstPage = (cb = () => {}) => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/0`, sort, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${gameId}/reviews/0`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => cb(parsed))
       .catch(err => console.error(err));
   };
 
   const fetchPage = (newPage) => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${newPage - 1}`, sort, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${gameId}/reviews/${newPage - 1}`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setReviews(parsed.rows);
@@ -78,7 +80,7 @@ const App = (props) => {
   };
 
   const fetchSummary = () => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary`, sort, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${gameId}/summary`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setOverallSummary(parsed.overall);
@@ -89,7 +91,7 @@ const App = (props) => {
   };
 
   const fetchFilterSummary = () => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/summary/filterOnly`, sort, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${gameId}/summary/filterOnly`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => {
         setFilteredSummary(parsed.filtered);
@@ -98,7 +100,7 @@ const App = (props) => {
   };
 
   const fetchForSort = () => {
-    fetch(addQueryParams(`/api/games/${props.gameId || 1}/reviews/${page - 1}`, sort, getApiFilters()))
+    fetch(addQueryParams(`/api/games/${gameId}/reviews/${page - 1}`, sort, getApiFilters()))
       .then(response => response.json())
       .then(parsed => setReviews(parsed.rows))
       .catch(err => console.error(err));
